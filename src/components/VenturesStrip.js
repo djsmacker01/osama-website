@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 
 const VenturesStrip = () => {
   const ventures = [
@@ -29,16 +31,40 @@ const VenturesStrip = () => {
   ];
 
   return (
-    <section className="ventures-strip">
-      <div className="ventures-grid">
+    <motion.section 
+      className="ventures-strip"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
+      <motion.div 
+        className="ventures-grid"
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-50px" }}
+      >
         {ventures.map((venture, index) => (
-          <div key={index} className="venture-card">
+          <motion.div 
+            key={index} 
+            className="venture-card"
+            variants={{
+              initial: { opacity: 0, y: 30 },
+              animate: { 
+                opacity: 1, 
+                y: 0,
+                transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+              }
+            }}
+            {...cardHover}
+          >
             <h3>{venture.title}</h3>
             <p>{venture.description}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

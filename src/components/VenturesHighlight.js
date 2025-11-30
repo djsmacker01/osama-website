@@ -1,10 +1,31 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, imageHover, buttonHover } from '../utils/animations';
 
 const VenturesHighlight = () => {
   return (
-    <section className="ventures-highlight" id="ventures">
-      <div className="venture-row">
-        <div className="venture-text">
+    <motion.section 
+      className="ventures-highlight" 
+      id="ventures"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
+      <motion.div 
+        className="venture-row"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div 
+          className="venture-text"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2>OTID ENTERTAINMENT / OTID.AGENCY</h2>
           <p>The global marketing, events, media and festival company.</p>
           <p>Founded in 2023, OTID Entertainment and OTID.Agency work together to:</p>
@@ -14,15 +35,39 @@ const VenturesHighlight = () => {
             <li>Produce media and content around launches and campaigns</li>
             <li>Partner with brands, platforms and institutions that want culture-led growth</li>
           </ul>
-          <button className="btn-primary">EXPLORE OTID</button>
-        </div>
-        <div className="venture-image">
+          <motion.button 
+            className="btn-primary"
+            {...buttonHover}
+          >
+            EXPLORE OTID
+          </motion.button>
+        </motion.div>
+        <motion.div 
+          className="venture-image"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          {...imageHover}
+        >
           <img src="/images/otid-image.jpg" alt="OTID Entertainment" />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <div className="venture-row reverse">
-        <div className="venture-text">
+      <motion.div 
+        className="venture-row reverse"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div 
+          className="venture-text"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2>AFROWALES</h2>
           <p>
             Amplifying underrepresented voices through inclusive events, festivals and youth 
@@ -35,13 +80,25 @@ const VenturesHighlight = () => {
             <li>School, college and university collaborations</li>
             <li>Community projects and charity drives</li>
           </ul>
-          <button className="btn-primary">DISCOVER AFROWALES</button>
-        </div>
-        <div className="venture-image">
+          <motion.button 
+            className="btn-primary"
+            {...buttonHover}
+          >
+            DISCOVER AFROWALES
+          </motion.button>
+        </motion.div>
+        <motion.div 
+          className="venture-image"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          {...imageHover}
+        >
           <img src="/images/afrowales-image.jpg" alt="Afrowales" />
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
