@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 
 const Awards = () => {
   const awards = [
@@ -35,22 +37,58 @@ const Awards = () => {
   ];
 
   return (
-    <section className="awards">
+    <motion.section 
+      className="awards"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="awards-container">
-        <h2 className="section-title" style={{ color: 'var(--dark-bg)' }}>
+        <motion.h2 
+          className="section-title" 
+          style={{ color: 'var(--dark-bg)' }}
+          {...scrollReveal}
+        >
           AWARDS & RECOGNITION
-        </h2>
-        <div className="awards-grid">
+        </motion.h2>
+        <motion.div 
+          className="awards-grid"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {awards.map((award, index) => (
-            <div key={index} className="award-card">
-              <div className="award-icon">{award.icon}</div>
+            <motion.div 
+              key={index} 
+              className="award-card"
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+                }
+              }}
+              {...cardHover}
+            >
+              <motion.div 
+                className="award-icon"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2, type: "spring" }}
+              >
+                {award.icon}
+              </motion.div>
               <div className="award-title">{award.title}</div>
               <p className="award-description">{award.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
