@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 
 const WhatIDo = () => {
   const roles = [
@@ -17,17 +19,47 @@ const WhatIDo = () => {
   ];
 
   return (
-    <section className="what-i-do" id="about">
-      <h2 className="section-title">WHAT I DO</h2>
-      <div className="what-i-do-grid">
+    <motion.section 
+      className="what-i-do" 
+      id="about"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
+      <motion.h2 
+        className="section-title"
+        {...scrollReveal}
+      >
+        WHAT I DO
+      </motion.h2>
+      <motion.div 
+        className="what-i-do-grid"
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-50px" }}
+      >
         {roles.map((role, index) => (
-          <div key={index} className="what-card">
+          <motion.div 
+            key={index} 
+            className="what-card"
+            variants={{
+              initial: { opacity: 0, x: -30 },
+              animate: { 
+                opacity: 1, 
+                x: 0,
+                transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+              }
+            }}
+            {...cardHover}
+          >
             <h3>{role.title}</h3>
             <p>{role.description}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
