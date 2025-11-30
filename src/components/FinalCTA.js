@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, buttonHover } from '../utils/animations';
 
 const FinalCTA = () => {
   const scrollToAbout = () => {
@@ -9,24 +11,52 @@ const FinalCTA = () => {
   };
 
   return (
-    <section className="final-cta" id="contact">
-      <h2>BUILD SOMETHING BOLD WITH OSAMA</h2>
-      <p>
+    <motion.section 
+      className="final-cta" 
+      id="contact"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
+      <motion.h2
+        {...scrollReveal}
+      >
+        BUILD SOMETHING BOLD WITH OSAMA
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         If you are ready to treat culture as a serious part of your growth strategy, 
         Osama can help.
-      </p>
-      <div className="hero-buttons" style={{ justifyContent: 'center' }}>
-        <button 
+      </motion.p>
+      <motion.div 
+        className="hero-buttons" 
+        style={{ justifyContent: 'center' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <motion.button 
           className="btn-primary" 
           onClick={() => window.location.href = 'mailto:osama@example.com'}
+          {...buttonHover}
         >
           WORK WITH OSAMA
-        </button>
-        <button className="btn-secondary" onClick={scrollToAbout}>
+        </motion.button>
+        <motion.button 
+          className="btn-secondary" 
+          onClick={scrollToAbout}
+          {...buttonHover}
+        >
           LEARN MORE
-        </button>
-      </div>
-    </section>
+        </motion.button>
+      </motion.div>
+    </motion.section>
   );
 };
 
