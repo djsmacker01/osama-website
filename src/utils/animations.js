@@ -84,9 +84,50 @@ export const buttonHover = {
 // Card animations
 export const cardHover = {
   whileHover: { 
-    y: -8,
-    opacity: 0.95,
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+    y: -12,
+    scale: 1.02,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.25, 0.46, 0.45, 0.94],
+      type: "spring",
+      stiffness: 300,
+      damping: 20
+    }
+  }
+};
+
+// Professional card reveal animation
+export const professionalCardReveal = {
+  initial: { 
+    opacity: 0, 
+    y: 60,
+    scale: 0.9,
+    rotateX: -15
+  },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    rotateX: 0,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.16, 1, 0.3, 1],
+      type: "spring",
+      stiffness: 100,
+      damping: 15
+    }
+  }
+};
+
+// Stagger container for professional reveals
+export const professionalStaggerContainer = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
   }
 };
 

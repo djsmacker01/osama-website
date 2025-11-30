@@ -389,21 +389,63 @@ nav.scrolled {
 
 .what-i-do-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
+}
+
+@media (min-width: 1400px) {
+    .what-i-do-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .what-card {
     padding: 2.5rem;
     background: var(--accent-gray);
-    border-left: 4px solid var(--primary-yellow);
-    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.what-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-yellow);
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: accentBarReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--card-index, 0) * 0.15s + 0.3s);
+}
+
+@keyframes accentBarReveal {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
 }
 
 .what-card:hover {
     background: var(--border-gray);
-    transform: translateX(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(232, 255, 0, 0.15);
 }
+
+.what-card:hover::before {
+    width: 6px;
+    box-shadow: 0 0 20px rgba(232, 255, 0, 0.6);
+}
+
 
 .what-card h3 {
     font-size: 1.8rem;
@@ -1229,7 +1271,7 @@ footer {
     }
 
     .what-i-do-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .impact-grid {
@@ -1284,6 +1326,10 @@ footer {
 @media (max-width: 640px) {
     nav {
         padding: 1rem 1.5rem;
+    }
+
+    .what-i-do-grid {
+        grid-template-columns: 1fr;
     }
 
     .hero {

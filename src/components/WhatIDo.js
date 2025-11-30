@@ -116,7 +116,8 @@ const WhatIDo = () => {
             }}
             style={{
               transformStyle: "preserve-3d",
-              perspective: "1000px"
+              perspective: "1000px",
+              "--card-index": index
             }}
           >
             <motion.h3
