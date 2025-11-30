@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 
 const ImpactNumbers = () => {
   const stats = [
@@ -10,22 +12,58 @@ const ImpactNumbers = () => {
   ];
 
   return (
-    <section className="impact">
+    <motion.section 
+      className="impact"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="impact-container">
-        <h2 className="section-title" style={{ color: 'var(--dark-bg)' }}>IMPACT IN NUMBERS</h2>
-        <div className="impact-grid">
+        <motion.h2 
+          className="section-title" 
+          style={{ color: 'var(--dark-bg)' }}
+          {...scrollReveal}
+        >
+          IMPACT IN NUMBERS
+        </motion.h2>
+        <motion.div 
+          className="impact-grid"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {stats.map((stat, index) => (
-            <div key={index} className="impact-card">
+            <motion.div 
+              key={index} 
+              className="impact-card"
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+                }
+              }}
+              {...cardHover}
+            >
               <div className="impact-number">{stat.number}</div>
               <div className="impact-label">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-        <p className="impact-description">
+        </motion.div>
+        <motion.p 
+          className="impact-description"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           The result of combining marketing strategy, ticketing science, community insight and bold creative direction.
-        </p>
+        </motion.p>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
