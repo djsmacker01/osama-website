@@ -1,22 +1,60 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
+import { scrollReveal, cardHover, professionalStaggerContainer, professionalCardReveal } from '../utils/animations';
 
 const WhatIDo = () => {
   const roles = [
     {
-      title: "Growth Architect",
-      description: "Osama designs end-to-end marketing and growth systems for live experiences. From the very first impression to the final checkout, he builds journeys that turn attention into ticket sales, and ticket sales into long-term loyalty."
+      title: "Tech Business Consultant",
+      description: "Nurudeen provides strategic technology consulting to businesses, helping them leverage AI, machine learning, automation, and data science to streamline operations and drive innovation. He optimizes workflows and implements tech-driven solutions that enhance productivity and competitiveness in the market."
     },
     {
-      title: "Creative Director",
-      description: "As a creative director, Osama builds live experiences that feel cinematic and human. He brings together artists, staging, lighting, sound, storytelling and media into nights, festivals and campaigns that audiences talk about for months."
+      title: "Automation Specialist",
+      description: "Nurudeen designs and implements intelligent automation solutions that transform manual processes into efficient, scalable systems. From workflow optimization to AI-driven automation, he helps organizations reduce costs, eliminate bottlenecks, and free up teams to focus on high-value work."
     },
     {
-      title: "Cultural Strategist",
-      description: "Osama specialises in underestimated audiences and emerging scenes. He works with organisations that want to earn trust, not just buy reach, and uses culture as a strategic asset for growth rather than decoration."
+      title: "Software Developer & Engineer",
+      description: "As Founder of SAAN-HUB Solutions, Nurudeen builds custom software, applications, and platforms that solve real-world problems. He specializes in web development, mobile apps, dashboards, and complete technical solutions—combining development expertise with consultancy to deliver products that scale and perform."
+    },
+    {
+      title: "Innovation & Talent Connector",
+      description: "Through SAAN-HUB Solutions, Nurudeen bridges technology and people. He connects businesses with top-tier talent in software engineering, AI, and technical fields, while also exploring R&D and game development projects. His work spans tech consulting, recruitment, and building solutions that make a meaningful impact."
     }
   ];
+
+  // Alternate animation directions for visual interest
+  const getCardVariants = (index) => {
+    const directions = [
+      { x: -50, y: 50, rotateX: -10 },
+      { x: 50, y: 50, rotateX: -10 },
+      { x: -50, y: 50, rotateX: -10 },
+      { x: 50, y: 50, rotateX: -10 }
+    ];
+    
+    return {
+      initial: { 
+        opacity: 0, 
+        ...directions[index],
+        scale: 0.85,
+        filter: "blur(10px)"
+      },
+      animate: { 
+        opacity: 1, 
+        x: 0,
+        y: 0,
+        rotateX: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        transition: { 
+          duration: 0.9, 
+          ease: [0.16, 1, 0.3, 1],
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }
+      }
+    };
+  };
 
   return (
     <motion.section 
@@ -25,17 +63,36 @@ const WhatIDo = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <motion.h2 
         className="section-title"
-        {...scrollReveal}
+        initial={{ 
+          opacity: 0, 
+          y: 40,
+          scale: 0.95,
+          letterSpacing: "-0.1em"
+        }}
+        whileInView={{ 
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          letterSpacing: "0em"
+        }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ 
+          duration: 1,
+          ease: [0.16, 1, 0.3, 1],
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }}
       >
         WHAT I DO
       </motion.h2>
       <motion.div 
         className="what-i-do-grid"
-        variants={staggerContainer}
+        variants={professionalStaggerContainer}
         initial="initial"
         whileInView="animate"
         viewport={{ once: true, margin: "-50px" }}
@@ -44,18 +101,52 @@ const WhatIDo = () => {
           <motion.div 
             key={index} 
             className="what-card"
-            variants={{
-              initial: { opacity: 0, x: -30 },
-              animate: { 
-                opacity: 1, 
-                x: 0,
-                transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+            variants={getCardVariants(index)}
+            whileHover={{ 
+              y: -15,
+              scale: 1.03,
+              rotateY: 2,
+              transition: { 
+                duration: 0.5, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                type: "spring",
+                stiffness: 300,
+                damping: 20
               }
             }}
-            {...cardHover}
+            style={{
+              transformStyle: "preserve-3d",
+              perspective: "1000px"
+            }}
           >
-            <h3>{role.title}</h3>
-            <p>{role.description}</p>
+            <motion.h3
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0,
+                transition: { 
+                  delay: 0.4 + (index * 0.15),
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1]
+                }
+              }}
+            >
+              {role.title}
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { 
+                  delay: 0.5 + (index * 0.15),
+                  duration: 0.7,
+                  ease: [0.16, 1, 0.3, 1]
+                }
+              }}
+            >
+              {role.description}
+            </motion.p>
           </motion.div>
         ))}
       </motion.div>
