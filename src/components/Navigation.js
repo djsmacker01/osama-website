@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { fadeInDown } from '../utils/animations';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,28 +29,40 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={isScrolled ? 'scrolled' : ''}>
+    <motion.nav 
+      className={isScrolled ? 'scrolled' : ''}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+    >
       <div className="nav-container">
-        <div className="logo" onClick={() => scrollToSection('home')}>
-          OSAMA
-        </div>
-        <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
-          <li><a onClick={() => scrollToSection('home')}>Home</a></li>
-          <li><a onClick={() => scrollToSection('about')}>About</a></li>
-          <li><a onClick={() => scrollToSection('ventures')}>Ventures</a></li>
-          <li><a onClick={() => scrollToSection('speaking')}>Speaking</a></li>
-          <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
-        </ul>
-        <div 
+        <motion.div 
+          className="logo" 
+          onClick={() => scrollToSection('home')}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.2 }}
+        >
+          NURUDEEN
+        </motion.div>
+        <motion.div 
           className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          whileTap={{ scale: 0.95 }}
         >
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </motion.div>
+        <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
+          <li><a onClick={() => scrollToSection('home')}>Home</a></li>
+          <li><a onClick={() => scrollToSection('about')}>About</a></li>
+          <li><a onClick={() => scrollToSection('ventures')}>Ventures</a></li>
+          <li><a onClick={() => scrollToSection('volunteering')}>Volunteering</a></li>
+          <li><a onClick={() => scrollToSection('speaking')}>Speaking</a></li>
+          <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
+        </ul>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
