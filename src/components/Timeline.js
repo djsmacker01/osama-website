@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { scrollReveal, cardHover, staggerContainer, buttonHover } from '../utils/animations';
 
 const Timeline = () => {
   const milestones = [
@@ -20,23 +22,64 @@ const Timeline = () => {
   ];
 
   return (
-    <section className="timeline">
+    <motion.section 
+      className="timeline"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="timeline-container">
-        <h2 className="section-title" style={{ color: 'var(--dark-bg)' }}>JOURNEY</h2>
-        <div className="timeline-grid">
+        <motion.h2 
+          className="section-title" 
+          style={{ color: 'var(--dark-bg)' }}
+          {...scrollReveal}
+        >
+          JOURNEY
+        </motion.h2>
+        <motion.div 
+          className="timeline-grid"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {milestones.map((milestone, index) => (
-            <div key={index} className="timeline-card">
+            <motion.div 
+              key={index} 
+              className="timeline-card"
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+                }
+              }}
+              {...cardHover}
+            >
               <div className="timeline-year">{milestone.year}</div>
               <div className="timeline-location">{milestone.location}</div>
               <p className="timeline-description">{milestone.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-        <div className="timeline-cta">
-          <button className="btn-primary">VIEW FULL TIMELINE</button>
-        </div>
+        </motion.div>
+        <motion.div 
+          className="timeline-cta"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <motion.button 
+            className="btn-primary"
+            {...buttonHover}
+          >
+            VIEW FULL TIMELINE
+          </motion.button>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
