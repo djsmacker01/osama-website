@@ -5,7 +5,7 @@ import { scrollReveal, hoverImage, staggerContainer } from '../utils/animations'
 const About = () => {
   const timelineEvents = [
     {
-      year: '1995',
+      year: '1989',
       title: 'BORN',
       location: 'LAGOS, NIGERIA',
       description: 'Born to a Nigerian family with a passion for technology and innovation. From an early age, Nurudeen showed an interest in how things work and how technology can solve real-world problems.',
