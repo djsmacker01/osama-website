@@ -6,33 +6,18 @@ const Awards = () => {
   const awards = [
     { 
       icon: "🏆", 
-      title: "Entrepreneur of the Year", 
-      description: "Black History Wales Youth Awards" 
+      title: "Finalist Award", 
+      description: "National coding challenge by TargetJobs and Rolls-Royce, recognizing exceptional technical skills and innovative problem-solving in competitive programming." 
     },
     { 
-      icon: "⚡", 
-      title: "Power Up Industry Professional", 
-      description: "PRS Foundation" 
+      icon: "🔬", 
+      title: "STEM Ambassador", 
+      description: "Recognized for outstanding contributions to STEM outreach and mentoring, inspiring the next generation of engineers, scientists, and technologists through educational initiatives and community engagement." 
     },
     { 
-      icon: "🎵", 
-      title: "PPL Momentum Accelerator", 
-      description: "PRS Foundation Industry Professional" 
-    },
-    { 
-      icon: "🏛️", 
-      title: "Honoured in Welsh Senedd", 
-      description: "For cultural leadership and Black History Wales programmes" 
-    },
-    { 
-      icon: "🎉", 
-      title: "Cardiff Life Awards Finalist", 
-      description: "Best Event Company" 
-    },
-    { 
-      icon: "🌟", 
-      title: "Mastering Diversity Awards", 
-      description: "Multiple wins for inclusion and impact" 
+      icon: "🎤", 
+      title: "Speaking Engagements", 
+      description: "Featured speaker at Wales Tech Week, sharing expertise in tech and innovation, and contributing to thought leadership discussions on the future of technology, AI, and digital transformation." 
     }
   ];
 
