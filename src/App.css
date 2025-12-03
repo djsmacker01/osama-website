@@ -749,6 +749,7 @@ nav.scrolled {
     text-align: center;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    overflow: hidden;
 }
 
 .award-card:hover {
@@ -771,6 +772,276 @@ nav.scrolled {
 .award-description {
     color: #666;
     font-size: 0.95rem;
+}
+
+.award-view-button {
+    margin-top: 1.5rem;
+    padding: 0.75rem 2rem;
+    background: var(--primary-yellow);
+    color: var(--dark-bg);
+    border: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.award-view-button:hover {
+    background: #d4e600;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 255, 0, 0.3);
+}
+
+/* Award Video Overlay Styles */
+.award-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.award-video-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 1rem;
+}
+
+.award-video-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Award Modal Styles */
+.award-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.award-modal-content {
+    position: relative;
+    background: white;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.award-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--dark-bg);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.award-modal-close:hover {
+    background: var(--primary-yellow);
+    color: var(--dark-bg);
+    transform: rotate(90deg);
+}
+
+.award-modal-image-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.award-modal-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.award-modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.award-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--dark-bg);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.award-modal-nav:hover {
+    background: var(--primary-yellow);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.award-modal-nav-prev {
+    left: 1rem;
+}
+
+.award-modal-nav-next {
+    right: 1rem;
+}
+
+.award-modal-info {
+    padding: 2rem;
+    background: white;
+}
+
+.award-modal-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-bg);
+    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.award-modal-description {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.award-modal-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+    background: #f5f5f5;
+}
+
+.award-modal-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--dark-bg);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.award-modal-indicator:hover {
+    background: var(--primary-yellow);
+    border-color: var(--primary-yellow);
+}
+
+.award-modal-indicator.active {
+    background: var(--dark-bg);
+    border-color: var(--dark-bg);
+}
+
+/* Video Modal Styles */
+.award-video-modal-content {
+    position: relative;
+    background: white;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.award-video-modal-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    background: var(--dark-bg);
+}
+
+.award-video-modal-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .award-modal-content,
+    .award-video-modal-content {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+
+    .award-modal-image-container {
+        height: 300px;
+    }
+
+    .award-modal-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .award-modal-nav-prev {
+        left: 0.5rem;
+    }
+
+    .award-modal-nav-next {
+        right: 0.5rem;
+    }
+
+    .award-modal-title {
+        font-size: 1.4rem;
+    }
+
+    .award-modal-info {
+        padding: 1.5rem;
+    }
 }
 
 /* Volunteering Section */
