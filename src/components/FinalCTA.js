@@ -10,6 +10,13 @@ const FinalCTA = () => {
     }
   };
 
+  const scrollToSpeaking = () => {
+    const section = document.getElementById('speaking');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.section 
       className="final-cta" 
@@ -22,16 +29,30 @@ const FinalCTA = () => {
       <motion.h2
         {...scrollReveal}
       >
-        BUILD SOMETHING BOLD WITH OSAMA
+        BUILD SOMETHING BOLD WITH NURUDEEN
       </motion.h2>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
+        style={{ maxWidth: '800px', margin: '0 auto 1rem' }}
       >
-        If you are ready to treat culture as a serious part of your growth strategy, 
-        Osama can help.
+        If you're ready to leverage AI and cutting-edge technology to transform your business, 
+        solve complex challenges, or build innovative digital solutions, Nurudeen can help.
+      </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        style={{ maxWidth: '800px', margin: '0 auto 2rem', color: '#666', fontSize: '1rem' }}
+      >
+        As a software engineer, AI innovator, and founder of SAAN-HUB Solutions, Nurudeen specializes in 
+        building AI-powered platforms that tackle real-world problems. Whether you need custom software 
+        development, AI integration, technical consulting, or a speaker for your tech event, he brings 
+        expertise from speaking at major conferences like Wales Tech Week and London Tech Week, combined 
+        with hands-on experience in creating scalable digital solutions.
       </motion.p>
       <motion.div 
         className="hero-buttons" 
@@ -39,21 +60,21 @@ const FinalCTA = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
       >
         <motion.button 
           className="btn-primary" 
-          onClick={() => window.location.href = 'mailto:osama@example.com'}
+          onClick={() => window.location.href = 'mailto:djsmacker01@gmail.com'}
           {...buttonHover}
         >
-          WORK WITH OSAMA
+          WORK WITH NURUDEEN
         </motion.button>
         <motion.button 
           className="btn-secondary" 
-          onClick={scrollToAbout}
+          onClick={scrollToSpeaking}
           {...buttonHover}
         >
-          LEARN MORE
+          SPEAKING ENQUIRIES
         </motion.button>
       </motion.div>
     </motion.section>
