@@ -5,7 +5,9 @@ import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 const Awards = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isStemModalOpen, setIsStemModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentStemIndex, setCurrentStemIndex] = useState(0);
 
   const finalistAwardImages = [
     {
@@ -32,6 +34,54 @@ const Awards = () => {
       src: "/images/group_pic.jpg",
       title: "Awards Ceremony",
       description: "This group photo captures a special moment from the TargetJobs and Rolls-Royce National Coding Challenge event. It was a memorable evening celebrating technical excellence and innovation, and I'm grateful to have been part of this recognition of talented developers and engineers."
+    }
+  ];
+
+  const stemAmbassadorImages = [
+    {
+      src: "/images/join-stem-abassador2022.png",
+      title: "Joining STEM Ambassador",
+      description: "This marks the day I officially joined the STEM Ambassador program in 2022. It was the beginning of my journey to inspire and mentor the next generation of engineers, scientists, and technologists."
+    },
+    {
+      src: "/images/activity01.png",
+      title: "STEM Activity Evidence",
+      description: "One of the many emails documenting my hard work and dedication as a STEM Ambassador. These communications showcase my commitment to supporting educational initiatives and inspiring young minds."
+    },
+    {
+      src: "/images/activity02.png",
+      title: "STEM Activity Evidence",
+      description: "Another testament to my ongoing work in STEM outreach. These activities demonstrate my passion for sharing knowledge and creating opportunities for students to explore technology and innovation."
+    },
+    {
+      src: "/images/activity03.png",
+      title: "STEM Activity Evidence",
+      description: "Continued evidence of my engagement with schools and educational institutions, helping to bridge the gap between industry and education through practical workshops and mentoring."
+    },
+    {
+      src: "/images/activity04.png",
+      title: "STEM Activity Evidence",
+      description: "More documentation of my contributions to STEM education, showing my dedication to making a positive impact in the lives of young learners across Wales."
+    },
+    {
+      src: "/images/activity05.png",
+      title: "STEM Activity Evidence",
+      description: "These emails represent countless hours spent preparing workshops, mentoring students, and sharing my expertise in technology and engineering with the next generation."
+    },
+    {
+      src: "/images/activity06.png",
+      title: "STEM Activity Evidence",
+      description: "Further evidence of my commitment to STEM outreach, demonstrating the breadth and depth of my involvement in educational initiatives and community engagement."
+    },
+    {
+      src: "/images/activity07.png",
+      title: "STEM Activity Evidence",
+      description: "Additional documentation of my work as a STEM Ambassador, showcasing the variety of activities and engagements I've participated in to inspire young minds."
+    },
+    {
+      src: "/images/IET-Faraday-day.png",
+      title: "IET Faraday Day",
+      description: "A special day where I helped young students with practical projects. The IET Faraday Day was an incredible opportunity to work hands-on with students, guiding them through real-world engineering challenges and sparking their interest in technology and innovation."
     }
   ];
 
@@ -74,6 +124,17 @@ const Awards = () => {
     document.body.style.overflow = 'unset';
   };
 
+  const openStemModal = () => {
+    setIsStemModalOpen(true);
+    setCurrentStemIndex(0);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeStemModal = () => {
+    setIsStemModalOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % finalistAwardImages.length);
   };
@@ -84,6 +145,18 @@ const Awards = () => {
 
   const goToImage = (index) => {
     setCurrentImageIndex(index);
+  };
+
+  const nextStemImage = () => {
+    setCurrentStemIndex((prev) => (prev + 1) % stemAmbassadorImages.length);
+  };
+
+  const prevStemImage = () => {
+    setCurrentStemIndex((prev) => (prev - 1 + stemAmbassadorImages.length) % stemAmbassadorImages.length);
+  };
+
+  const goToStemImage = (index) => {
+    setCurrentStemIndex(index);
   };
 
   return (
@@ -145,14 +218,24 @@ const Awards = () => {
                 </motion.button>
               )}
               {index === 1 && (
-                <motion.button
-                  className="award-view-button"
-                  onClick={openVideoModal}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Click me
-                </motion.button>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1.5rem' }}>
+                  <motion.button
+                    className="award-view-button"
+                    onClick={openStemModal}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Evidence
+                  </motion.button>
+                  <motion.button
+                    className="award-view-button"
+                    onClick={openVideoModal}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Watch Video
+                  </motion.button>
+                </div>
               )}
             </motion.div>
           ))}
@@ -284,6 +367,90 @@ const Awards = () => {
                 <p className="award-modal-description">
                   Recognized for outstanding contributions to STEM outreach and mentoring, inspiring the next generation of engineers, scientists, and technologists through educational initiatives and community engagement.
                 </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal for STEM Ambassador Images */}
+      <AnimatePresence>
+        {isStemModalOpen && (
+          <motion.div
+            className="award-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeStemModal}
+          >
+            <motion.div
+              className="award-modal-content"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="award-modal-close"
+                onClick={closeStemModal}
+                aria-label="Close modal"
+              >
+                ×
+              </button>
+
+              <div className="award-modal-image-container">
+                <button
+                  className="award-modal-nav award-modal-nav-prev"
+                  onClick={prevStemImage}
+                  aria-label="Previous image"
+                >
+                  ‹
+                </button>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentStemIndex}
+                    className="award-modal-image-wrapper"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={stemAmbassadorImages[currentStemIndex].src}
+                      alt={stemAmbassadorImages[currentStemIndex].title}
+                      className="award-modal-image"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <button
+                  className="award-modal-nav award-modal-nav-next"
+                  onClick={nextStemImage}
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
+              </div>
+
+              <div className="award-modal-info">
+                <h3 className="award-modal-title">
+                  {stemAmbassadorImages[currentStemIndex].title}
+                </h3>
+                <p className="award-modal-description">
+                  {stemAmbassadorImages[currentStemIndex].description}
+                </p>
+              </div>
+
+              <div className="award-modal-indicators">
+                {stemAmbassadorImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`award-modal-indicator ${currentStemIndex === index ? 'active' : ''}`}
+                    onClick={() => goToStemImage(index)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
               </div>
             </motion.div>
           </motion.div>
