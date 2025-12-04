@@ -6,8 +6,10 @@ const Awards = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isStemModalOpen, setIsStemModalOpen] = useState(false);
+  const [isSpeakingModalOpen, setIsSpeakingModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentStemIndex, setCurrentStemIndex] = useState(0);
+  const [currentSpeakingIndex, setCurrentSpeakingIndex] = useState(0);
 
   const finalistAwardImages = [
     {
@@ -85,6 +87,49 @@ const Awards = () => {
     }
   ];
 
+  const speakingEngagementsImages = [
+    {
+      src: "/images/WalechTechWeek-Talking-how-audience-should-consider-career-in-tech.jpg",
+      title: "Wales Tech Week - Sharing Career Advice",
+      description: "Speaking at Wales Tech Week, sharing my experiences and advising the audience on why they should consider a career in tech. It was an honor to inspire the next generation of technologists."
+    },
+    {
+      src: "/images/WalesTechWeek-panalist.jpg",
+      title: "Wales Tech Week - Panel Discussion",
+      description: "Participating as a panelist at Wales Tech Week alongside other industry experts, discussing the future of technology and sharing insights with the audience."
+    },
+    {
+      src: "/images/WalesTechWeek-pics.jpg",
+      title: "Wales Tech Week - Event",
+      description: "A memorable moment from Wales Tech Week, where I had the opportunity to connect with fellow tech professionals and share knowledge with the community."
+    },
+    {
+      src: "/images/Talking-the-future-of-tech.jpg",
+      title: "Talking the Future of Tech",
+      description: "Engaging with the audience about the future of technology, discussing emerging trends, AI developments, and the exciting opportunities ahead in the tech industry."
+    },
+    {
+      src: "/images/Talent4Tech-Pane-WalesTechWeek.png",
+      title: "Talent4Tech Panel - Email Evidence",
+      description: "Email confirmation of my participation in the Talent4Tech Panel at Wales Tech Week, where I shared my journey and encouraged others to pursue careers in technology."
+    },
+    {
+      src: "/images/Talent4Tech-WalesTechWeek.png",
+      title: "Talent4Tech Panel - Confirmation",
+      description: "Official confirmation email for the Talent4Tech Panel at Wales Tech Week, recognizing my contribution as a speaker and panelist."
+    },
+    {
+      src: "/images/LondonTechWeek2024-pica.jpg",
+      title: "London Tech Week 2024",
+      description: "Attending London Tech Week 2024, where I spoke about the future of tech and AI as it gains momentum. An incredible platform to share insights and connect with global tech leaders."
+    },
+    {
+      src: "/images/FutureOfTech-london-tech-week.png",
+      title: "Future of Tech - London Tech Week",
+      description: "Speaking about the Future of Tech at London Tech Week 2024, discussing how AI is gaining momentum and shaping the future of technology and innovation."
+    }
+  ];
+
   const awards = [
     { 
       icon: "🏆", 
@@ -157,6 +202,29 @@ const Awards = () => {
 
   const goToStemImage = (index) => {
     setCurrentStemIndex(index);
+  };
+
+  const openSpeakingModal = () => {
+    setIsSpeakingModalOpen(true);
+    setCurrentSpeakingIndex(0);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeSpeakingModal = () => {
+    setIsSpeakingModalOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const nextSpeakingImage = () => {
+    setCurrentSpeakingIndex((prev) => (prev + 1) % speakingEngagementsImages.length);
+  };
+
+  const prevSpeakingImage = () => {
+    setCurrentSpeakingIndex((prev) => (prev - 1 + speakingEngagementsImages.length) % speakingEngagementsImages.length);
+  };
+
+  const goToSpeakingImage = (index) => {
+    setCurrentSpeakingIndex(index);
   };
 
   return (
@@ -236,6 +304,16 @@ const Awards = () => {
                     Watch Video
                   </motion.button>
                 </div>
+              )}
+              {index === 2 && (
+                <motion.button
+                  className="award-view-button"
+                  onClick={openSpeakingModal}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Click me
+                </motion.button>
               )}
             </motion.div>
           ))}
@@ -448,6 +526,90 @@ const Awards = () => {
                     key={index}
                     className={`award-modal-indicator ${currentStemIndex === index ? 'active' : ''}`}
                     onClick={() => goToStemImage(index)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal for Speaking Engagements Images */}
+      <AnimatePresence>
+        {isSpeakingModalOpen && (
+          <motion.div
+            className="award-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeSpeakingModal}
+          >
+            <motion.div
+              className="award-modal-content"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="award-modal-close"
+                onClick={closeSpeakingModal}
+                aria-label="Close modal"
+              >
+                ×
+              </button>
+
+              <div className="award-modal-image-container">
+                <button
+                  className="award-modal-nav award-modal-nav-prev"
+                  onClick={prevSpeakingImage}
+                  aria-label="Previous image"
+                >
+                  ‹
+                </button>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSpeakingIndex}
+                    className="award-modal-image-wrapper"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={speakingEngagementsImages[currentSpeakingIndex].src}
+                      alt={speakingEngagementsImages[currentSpeakingIndex].title}
+                      className="award-modal-image"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <button
+                  className="award-modal-nav award-modal-nav-next"
+                  onClick={nextSpeakingImage}
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
+              </div>
+
+              <div className="award-modal-info">
+                <h3 className="award-modal-title">
+                  {speakingEngagementsImages[currentSpeakingIndex].title}
+                </h3>
+                <p className="award-modal-description">
+                  {speakingEngagementsImages[currentSpeakingIndex].description}
+                </p>
+              </div>
+
+              <div className="award-modal-indicators">
+                {speakingEngagementsImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`award-modal-indicator ${currentSpeakingIndex === index ? 'active' : ''}`}
+                    onClick={() => goToSpeakingImage(index)}
                     aria-label={`Go to image ${index + 1}`}
                   />
                 ))}
