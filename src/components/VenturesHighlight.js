@@ -26,20 +26,21 @@ const VenturesHighlight = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2>OTID ENTERTAINMENT / OTID.AGENCY</h2>
-          <p>The global marketing, events, media and festival company.</p>
-          <p>Founded in 2023, OTID Entertainment and OTID.Agency work together to:</p>
+          <h2>SAAN-HUB SOLUTIONS</h2>
+          <p>The AI-powered digital solutions company building platforms that tackle real-world problems.</p>
+          <p>Founded by Nurudeen Adedeji, SAAN-HUB Solutions specializes in:</p>
           <ul>
-            <li>Design and deliver live experiences, festivals and branded events</li>
-            <li>Build marketing systems and ticketing funnels that scale</li>
-            <li>Produce media and content around launches and campaigns</li>
-            <li>Partner with brands, platforms and institutions that want culture-led growth</li>
+            <li>Building AI-powered platforms and intelligent digital solutions</li>
+            <li>Developing custom software applications that scale with your business</li>
+            <li>Creating innovative technology solutions that unlock new opportunities</li>
+            <li>Partnering with businesses and institutions to transform their digital capabilities</li>
           </ul>
           <motion.button 
             className="btn-primary"
+            onClick={() => window.location.href = 'mailto:djsmacker01@gmail.com'}
             {...buttonHover}
           >
-            EXPLORE OTID
+            EXPLORE SAAN-HUB
           </motion.button>
         </motion.div>
         <motion.div 
@@ -50,7 +51,7 @@ const VenturesHighlight = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           {...imageHover}
         >
-          <img src="/images/otid-image.jpg" alt="OTID Entertainment" />
+          <img src="/images/SAAN-HUB Solutions.jpeg" alt="SAAN-HUB Solutions" />
         </motion.div>
       </motion.div>
 
@@ -68,23 +69,24 @@ const VenturesHighlight = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2>AFROWALES</h2>
+          <h2>AI & SOFTWARE DEVELOPMENT</h2>
           <p>
-            Amplifying underrepresented voices through inclusive events, festivals and youth 
-            engagement. ✨ Be seen, heard and valued.
+            Transforming businesses through cutting-edge AI integration and custom software 
+            development. Building solutions that drive innovation and growth.
           </p>
-          <p>Founded in 2021, Afrowales focuses on:</p>
+          <p>Our expertise includes:</p>
           <ul>
-            <li>Inclusive events and club nights</li>
-            <li>Youth music festivals and showcases</li>
-            <li>School, college and university collaborations</li>
-            <li>Community projects and charity drives</li>
+            <li>AI-powered platform development and machine learning integration</li>
+            <li>Full-stack software engineering and web application development</li>
+            <li>Digital transformation consulting and technical strategy</li>
+            <li>Scalable system architecture and cloud-based solutions</li>
           </ul>
           <motion.button 
             className="btn-primary"
+            onClick={() => window.location.href = 'mailto:djsmacker01@gmail.com'}
             {...buttonHover}
           >
-            DISCOVER AFROWALES
+            GET IN TOUCH
           </motion.button>
         </motion.div>
         <motion.div 
@@ -95,7 +97,7 @@ const VenturesHighlight = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           {...imageHover}
         >
-          <img src="/images/afrowales-image.jpg" alt="Afrowales" />
+          <img src="/images/Headshot_1.png" alt="AI & Software Development" />
         </motion.div>
       </motion.div>
     </motion.section>
