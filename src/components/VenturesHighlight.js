@@ -97,7 +97,7 @@ const VenturesHighlight = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           {...imageHover}
         >
-          <img src="/images/Headshot_1.png" alt="AI & Software Development" />
+          <img src="/images/ai.png" alt="AI & Software Development" />
         </motion.div>
       </motion.div>
     </motion.section>
