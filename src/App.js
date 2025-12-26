@@ -10,6 +10,7 @@ import ImpactNumbers from './components/ImpactNumbers';
 import StoryPreview from './components/StoryPreview';
 import Timeline from './components/Timeline';
 import VenturesHighlight from './components/VenturesHighlight';
+import Projects from './components/Projects';
 import Awards from './components/Awards';
 import Volunteering from './components/Volunteering';
 import Speaking from './components/Speaking';
@@ -29,6 +30,7 @@ function App() {
       <StoryPreview />
       <Timeline />
       <VenturesHighlight />
+      <Projects />
       <Awards />
       <Volunteering />
       <Speaking />
