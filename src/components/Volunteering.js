@@ -1,8 +1,28 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 
 const Volunteering = () => {
+  const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const abilityNetImages = [
+    '/images/AbilityNet-1.png',
+    '/images/AbilityNet-2.png',
+    '/images/AbilityNet-3.png'
+  ];
+
+  // Auto-advance slideshow when AbilityNet card is hovered
+  useEffect(() => {
+    if (hoveredCardIndex === 3) { // AbilityNet is at index 3
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % abilityNetImages.length);
+      }, 3000); // Change image every 3 seconds
+      return () => clearInterval(interval);
+    } else {
+      setCurrentImageIndex(0); // Reset when not hovering
+    }
+  }, [hoveredCardIndex, abilityNetImages.length]);
   const volunteeringEngagements = [
     {
       organization: 'Tech for Good Initiative',
@@ -29,12 +49,12 @@ const Volunteering = () => {
       impact: 'Reached 500+ participants across 20+ workshops'
     },
     {
-      organization: 'Digital Skills for Refugees',
-      role: 'Technical Trainer',
-      location: 'Cardiff, Wales',
-      period: '2021 - 2023',
-      description: 'Teaching essential digital skills and software development basics to refugees and asylum seekers. Helping newcomers integrate into the UK tech community and build career pathways.',
-      impact: 'Trained 100+ individuals, supported 15+ job placements'
+      organization: 'AbilityNet',
+      role: 'Technical Volunteer',
+      location: 'Wales, UK',
+      period: '2022 - Present',
+      description: 'Applied technical expertise to directly support vulnerable individuals in using digital technology safely and effectively. Conducted in-home visits to assess client needs and provide tailored technical assistance. Set up and configured computers, tablets, and smartphones for clients with varying levels of digital literacy. Delivered practical training on safe internet practices to prevent cyber exploitation and implemented accessibility solutions for inclusive technology use. Demonstrated leadership and initiative in problem-solving complex technical challenges in real-world environments.',
+      impact: 'Empowered vulnerable clients to independently use digital tools, significantly reduced exposure to cyber risks through targeted education, and contributed to bridging the digital divide ensuring equitable access to technology'
     },
     {
       organization: 'STEM Ambassador Program',
@@ -91,7 +111,7 @@ const Volunteering = () => {
           {volunteeringEngagements.map((engagement, index) => (
             <motion.div 
               key={index} 
-              className="volunteering-card"
+              className={`volunteering-card ${index === 3 ? 'volunteering-card-flip' : ''}`}
               variants={{
                 initial: { opacity: 0, y: 30 },
                 animate: { 
@@ -100,21 +120,92 @@ const Volunteering = () => {
                   transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
                 }
               }}
-              {...cardHover}
+              {...(index !== 3 ? cardHover : {})}
+              onMouseEnter={() => index === 3 && setHoveredCardIndex(3)}
+              onMouseLeave={() => index === 3 && setHoveredCardIndex(null)}
+              style={{ position: 'relative', perspective: '1000px' }}
             >
-              <div className="volunteering-header">
-                <h3>{engagement.organization}</h3>
-                <span className="volunteering-period">{engagement.period}</span>
-              </div>
-              <div className="volunteering-role">{engagement.role}</div>
-              <div className="volunteering-location">
-                <span className="location-pin">📍</span>
-                <span>{engagement.location}</span>
-              </div>
-              <p className="volunteering-description">{engagement.description}</p>
-              <div className="volunteering-impact">
-                <strong>Impact:</strong> {engagement.impact}
-              </div>
+              {index === 3 ? (
+                <>
+                  {/* Front of card */}
+                  <motion.div 
+                    className="volunteering-card-front"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 3 ? 180 : 0,
+                      opacity: hoveredCardIndex === 3 ? 0 : 1
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-header">
+                      <h3>{engagement.organization}</h3>
+                      <span className="volunteering-period">{engagement.period}</span>
+                    </div>
+                    <div className="volunteering-role">{engagement.role}</div>
+                    <div className="volunteering-location">
+                      <span className="location-pin">📍</span>
+                      <span>{engagement.location}</span>
+                    </div>
+                    <p className="volunteering-description">{engagement.description}</p>
+                    <div className="volunteering-impact">
+                      <strong>Impact:</strong> {engagement.impact}
+                    </div>
+                  </motion.div>
+
+                  {/* Back of card with images */}
+                  <motion.div 
+                    className="volunteering-card-back"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 3 ? 0 : 180,
+                      opacity: hoveredCardIndex === 3 ? 1 : 0
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-card-back-content">
+                      <h3 className="volunteering-card-back-title">{engagement.organization}</h3>
+                      <div className="volunteering-card-images">
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={currentImageIndex}
+                            src={abilityNetImages[currentImageIndex]}
+                            alt={`AbilityNet evidence ${currentImageIndex + 1}`}
+                            className="volunteering-card-image"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </AnimatePresence>
+                      </div>
+                      <div className="volunteering-card-indicators">
+                        {abilityNetImages.map((_, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className={`volunteering-card-indicator ${currentImageIndex === imgIndex ? 'active' : ''}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              ) : (
+                <>
+                  <div className="volunteering-header">
+                    <h3>{engagement.organization}</h3>
+                    <span className="volunteering-period">{engagement.period}</span>
+                  </div>
+                  <div className="volunteering-role">{engagement.role}</div>
+                  <div className="volunteering-location">
+                    <span className="location-pin">📍</span>
+                    <span>{engagement.location}</span>
+                  </div>
+                  <p className="volunteering-description">{engagement.description}</p>
+                  <div className="volunteering-impact">
+                    <strong>Impact:</strong> {engagement.impact}
+                  </div>
+                </>
+              )}
             </motion.div>
           ))}
         </motion.div>
