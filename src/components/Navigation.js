@@ -57,6 +57,7 @@ const Navigation = () => {
           <li><a onClick={() => scrollToSection('home')}>Home</a></li>
           <li><a onClick={() => scrollToSection('about')}>About</a></li>
           <li><a onClick={() => scrollToSection('ventures')}>Ventures</a></li>
+          <li><a onClick={() => scrollToSection('projects')}>Projects</a></li>
           <li><a onClick={() => scrollToSection('volunteering')}>Volunteering</a></li>
           <li><a onClick={() => scrollToSection('speaking')}>Speaking</a></li>
           <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
