@@ -334,7 +334,7 @@ const Footer = () => {
             ease: [0.4, 0, 0.2, 1]
           }}
         >
-          <span>Website by Silverback®</span>
+          <span>Website by <a href="https://saan-hubsolutions.com/" target="_blank" rel="noopener noreferrer">SAAN-HUB Solutions®</a></span>
         </motion.div>
       </motion.div>
     </motion.footer>

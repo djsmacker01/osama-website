@@ -1,42 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Navigation from './components/Navigation';
-import AnimatedName from './components/AnimatedName';
-import Hero from './components/Hero';
-import About from './components/About';
-import VenturesStrip from './components/VenturesStrip';
-import WhatIDo from './components/WhatIDo';
-import ImpactNumbers from './components/ImpactNumbers';
-import StoryPreview from './components/StoryPreview';
-import Timeline from './components/Timeline';
-import VenturesHighlight from './components/VenturesHighlight';
-import Projects from './components/Projects';
-import Awards from './components/Awards';
-import Volunteering from './components/Volunteering';
-import Speaking from './components/Speaking';
-import FinalCTA from './components/FinalCTA';
-import Footer from './components/Footer';
+import Home from './components/Home';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 function App() {
   return (
-    <>
-      <Navigation />
-      <AnimatedName />
-      <Hero />
-      <About />
-      <VenturesStrip />
-      <WhatIDo />
-      <ImpactNumbers />
-      <StoryPreview />
-      <Timeline />
-      <VenturesHighlight />
-      <Projects />
-      <Awards />
-      <Volunteering />
-      <Speaking />
-      <FinalCTA />
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      </Routes>
+    </Router>
   );
 }
 
