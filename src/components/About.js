@@ -29,7 +29,7 @@ const About = () => {
       side: 'right'
     },
     {
-      year: '2020',
+      year: '2024',
       title: 'FOUNDS SAAN-HUB SOLUTIONS',
       location: 'CARDIFF',
       description: 'Founded SAAN-HUB Solutions, a technology company focused on building AI-powered platforms and digital solutions. The company was born from a vision to tackle real-world problems through innovative technology.',
