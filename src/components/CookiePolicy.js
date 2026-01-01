@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const CookiePolicy = () => {
   const navigate = useNavigate();
@@ -299,6 +300,7 @@ const CookiePolicy = () => {
           </div>
         </div>
       </motion.div>
+      <Footer />
     </div>
   );
 };
