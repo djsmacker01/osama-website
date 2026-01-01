@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Footer from './Footer';
 
 const CookiePolicy = () => {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMobileMenuOpen && !event.target.closest('.cookie-hamburger') && !event.target.closest('.cookie-nav-links')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <div className="cookie-policy-page">
@@ -24,13 +45,20 @@ const CookiePolicy = () => {
             >
               NURUDEEN ADEDEJI
             </div>
-            <div className="cookie-menu-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </div>
+            <motion.div 
+              className={`cookie-hamburger ${isMobileMenuOpen ? 'active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </motion.div>
+            <ul className={`cookie-nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
+              <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
+              <li><Link to="/privacy-policy" onClick={() => setIsMobileMenuOpen(false)}>Privacy Policy</Link></li>
+              <li><Link to="/cookie-policy" onClick={() => setIsMobileMenuOpen(false)}>Cookie Policy</Link></li>
+            </ul>
           </div>
           <h1 className="cookie-title">COOKIE POLICY</h1>
         </div>
