@@ -1321,7 +1321,7 @@ nav.scrolled {
 .volunteering-card-flip {
     transform-style: preserve-3d;
     height: 100%;
-    min-height: 500px;
+    min-height: 600px;
     position: relative;
 }
 
@@ -1349,23 +1349,27 @@ nav.scrolled {
 
 .volunteering-card-back {
     background: var(--accent-gray);
-    padding: 2.5rem;
+    padding: 2rem;
     border-left: 4px solid var(--primary-yellow);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .volunteering-card-back-content {
     width: 100%;
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 1rem;
 }
 
 .volunteering-card-back-title {
@@ -1378,23 +1382,36 @@ nav.scrolled {
 
 .volunteering-card-images {
     width: 100%;
-    height: 350px;
+    height: 500px;
+    min-height: 500px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 8px;
     margin-bottom: 1rem;
     background: var(--dark-bg);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0.5rem;
+    box-sizing: border-box;
 }
 
 .volunteering-card-image {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 0;
+    min-height: 0;
     object-fit: contain;
-    background: var(--dark-bg);
+    object-position: center;
+    background: transparent;
     border-radius: 8px;
+    image-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translateZ(0);
+    display: block;
 }
 
 .volunteering-card-indicators {
