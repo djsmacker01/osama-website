@@ -1777,7 +1777,8 @@ footer {
     flex-wrap: wrap;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links a:visited {
     color: var(--text-light);
     text-decoration: none;
     font-size: 0.9rem;
@@ -2179,5 +2180,251 @@ footer {
 
     .privacy-section ul ul {
         margin-left: 1rem;
+    }
+}
+
+/* Cookie Policy Page */
+.cookie-policy-page {
+    min-height: 100vh;
+    background: var(--dark-bg);
+}
+
+.cookie-header {
+    background: var(--primary-yellow);
+    min-height: 33vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 3rem;
+    position: relative;
+}
+
+.cookie-header-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 33vh;
+}
+
+.cookie-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.cookie-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+}
+
+.cookie-menu-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.cookie-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0;
+}
+
+.cookie-content {
+    background: var(--dark-bg);
+    min-height: 67vh;
+    padding: 4rem 3rem;
+}
+
+.cookie-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: var(--text-light);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.8;
+}
+
+.cookie-section {
+    margin-bottom: 3rem;
+}
+
+.cookie-section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    margin-top: 2.5rem;
+}
+
+.cookie-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.cookie-section p {
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.cookie-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cookie-section ul li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-light);
+}
+
+.cookie-section ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-yellow);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.cookie-section a {
+    color: var(--primary-yellow);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.cookie-section a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.cookie-table {
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+
+.cookie-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--accent-gray);
+    border: 1px solid var(--border-gray);
+}
+
+.cookie-table table thead {
+    background: rgba(232, 255, 0, 0.1);
+}
+
+.cookie-table table th {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--text-light);
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--primary-yellow);
+    font-size: 1rem;
+}
+
+.cookie-table table td {
+    color: var(--text-light);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-gray);
+    vertical-align: top;
+}
+
+.cookie-table table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cookie-table table tbody tr:hover {
+    background: rgba(232, 255, 0, 0.05);
+}
+
+.cookie-table table strong {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.cookie-schedule {
+    margin: 2rem 0;
+}
+
+.cookie-schedule h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cookie-schedule p {
+    margin-bottom: 1rem;
+}
+
+.cookie-schedule table {
+    margin-bottom: 2rem;
+}
+
+/* Responsive Cookie Policy */
+@media (max-width: 768px) {
+    .cookie-header {
+        min-height: 25vh;
+        padding: 1.5rem 2rem;
+    }
+
+    .cookie-header-content {
+        min-height: 25vh;
+    }
+
+    .cookie-title {
+        font-size: clamp(2rem, 10vw, 4rem);
+    }
+
+    .cookie-content {
+        padding: 3rem 2rem;
+        min-height: 75vh;
+    }
+
+    .cookie-logo {
+        font-size: 1rem;
+    }
+
+    .cookie-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .cookie-section h3 {
+        font-size: 1.2rem;
+    }
+
+    .cookie-table {
+        overflow-x: scroll;
+    }
+
+    .cookie-table table {
+        font-size: 0.9rem;
+    }
+
+    .cookie-table table th,
+    .cookie-table table td {
+        padding: 0.75rem;
     }
 }
