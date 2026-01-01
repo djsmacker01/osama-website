@@ -13,7 +13,7 @@ const About = () => {
       side: 'right'
     },
     {
-      year: '2015',
+      year: '2022',
       title: 'MOVES TO CARDIFF, WALES',
       location: 'CARDIFF',
       description: 'Moved to Cardiff to pursue higher education in Mechanical Engineering. This move marked the beginning of a journey that would combine engineering principles with software development and AI innovation.',
