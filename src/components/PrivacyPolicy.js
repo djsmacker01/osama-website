@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
@@ -324,6 +325,7 @@ const PrivacyPolicy = () => {
           </div>
         </div>
       </motion.div>
+      <Footer />
     </div>
   );
 };
