@@ -47,7 +47,7 @@ const About = () => {
     {
       year: '2024',
       title: 'RECOGNIZED AS AI INNOVATOR',
-      location: 'GLOBAL',
+      location: 'Newport, south wales',
       description: 'Gained recognition as a leading AI innovator and entrepreneur, with SAAN-HUB Solutions expanding its reach and impact. Continues to build platforms that unlock new opportunities in technology.',
       image: '/images/Headshot_1.png',
       side: 'left'
