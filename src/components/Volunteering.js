@@ -5,11 +5,19 @@ import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 const Volunteering = () => {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentOTCImageIndex, setCurrentOTCImageIndex] = useState(0);
 
   const abilityNetImages = [
     '/images/AbilityNet-1.png',
     '/images/AbilityNet-2.png',
     '/images/AbilityNet-3.png'
+  ];
+
+  const otcImages = [
+    '/images/off-the-curriculum-1.png',
+    '/images/OTC-2.png',
+    '/images/OTC-3.png',
+    '/images/OTC.png'
   ];
 
   // Auto-advance slideshow when AbilityNet card is hovered
@@ -23,6 +31,18 @@ const Volunteering = () => {
       setCurrentImageIndex(0); // Reset when not hovering
     }
   }, [hoveredCardIndex, abilityNetImages.length]);
+
+  // Auto-advance slideshow when Off the Curriculum card is hovered
+  useEffect(() => {
+    if (hoveredCardIndex === 5) { // Off the Curriculum is at index 5
+      const interval = setInterval(() => {
+        setCurrentOTCImageIndex((prev) => (prev + 1) % otcImages.length);
+      }, 3000); // Change image every 3 seconds
+      return () => clearInterval(interval);
+    } else {
+      setCurrentOTCImageIndex(0); // Reset when not hovering
+    }
+  }, [hoveredCardIndex, otcImages.length]);
   const volunteeringEngagements = [
     {
       organization: 'Tech for Good Initiative',
@@ -65,12 +85,12 @@ const Volunteering = () => {
       impact: 'Engaged 1000+ students across 50+ schools'
     },
     {
-      organization: 'Open Source Contributor',
-      role: 'Contributor & Maintainer',
-      location: 'Global (Remote)',
-      period: '2020 - Present',
-      description: 'Contributing to open-source projects focused on education, accessibility, and social impact. Maintaining documentation and helping onboard new contributors to open-source communities.',
-      impact: 'Contributed to 20+ projects, merged 100+ pull requests'
+      organization: 'Off the Curriculum (OTC)',
+      role: 'Web Developer / Software Developer Volunteer',
+      location: 'London, UK (Remote)',
+      period: '2024 - Present',
+      description: 'Leading development on the Communities, Mentoring, and Courses portals for Off the Curriculum - a complex and dynamic educational platform. Building safe blog-style community portals with features for monitoring bullying and abuse. Collaborating with a development team to create innovative educational solutions that serve diverse learning needs. Contributing to open-source codebase and maintaining project documentation.',
+      impact: 'Led development on key platform portals, contributed to complex educational technology solutions, and helped build safe online community spaces'
     }
   ];
 
@@ -111,7 +131,7 @@ const Volunteering = () => {
           {volunteeringEngagements.map((engagement, index) => (
             <motion.div 
               key={index} 
-              className={`volunteering-card ${index === 3 ? 'volunteering-card-flip' : ''}`}
+              className={`volunteering-card ${index === 3 || index === 5 ? 'volunteering-card-flip' : ''}`}
               variants={{
                 initial: { opacity: 0, y: 30 },
                 animate: { 
@@ -120,9 +140,9 @@ const Volunteering = () => {
                   transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
                 }
               }}
-              {...(index !== 3 ? cardHover : {})}
-              onMouseEnter={() => index === 3 && setHoveredCardIndex(3)}
-              onMouseLeave={() => index === 3 && setHoveredCardIndex(null)}
+              {...(index !== 3 && index !== 5 ? cardHover : {})}
+              onMouseEnter={() => (index === 3 || index === 5) && setHoveredCardIndex(index)}
+              onMouseLeave={() => (index === 3 || index === 5) && setHoveredCardIndex(null)}
               style={{ position: 'relative', perspective: '1000px' }}
             >
               {index === 3 ? (
@@ -183,6 +203,70 @@ const Volunteering = () => {
                           <div
                             key={imgIndex}
                             className={`volunteering-card-indicator ${currentImageIndex === imgIndex ? 'active' : ''}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              ) : index === 5 ? (
+                <>
+                  {/* Front of card */}
+                  <motion.div 
+                    className="volunteering-card-front"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 5 ? 180 : 0,
+                      opacity: hoveredCardIndex === 5 ? 0 : 1
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-header">
+                      <h3>{engagement.organization}</h3>
+                      <span className="volunteering-period">{engagement.period}</span>
+                    </div>
+                    <div className="volunteering-role">{engagement.role}</div>
+                    <div className="volunteering-location">
+                      <span className="location-pin">📍</span>
+                      <span>{engagement.location}</span>
+                    </div>
+                    <p className="volunteering-description">{engagement.description}</p>
+                    <div className="volunteering-impact">
+                      <strong>Impact:</strong> {engagement.impact}
+                    </div>
+                  </motion.div>
+
+                  {/* Back of card with images */}
+                  <motion.div 
+                    className="volunteering-card-back"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 5 ? 0 : 180,
+                      opacity: hoveredCardIndex === 5 ? 1 : 0
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-card-back-content">
+                      <h3 className="volunteering-card-back-title">{engagement.organization}</h3>
+                      <div className="volunteering-card-images">
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={currentOTCImageIndex}
+                            src={otcImages[currentOTCImageIndex]}
+                            alt={`Off the Curriculum evidence ${currentOTCImageIndex + 1}`}
+                            className="volunteering-card-image"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </AnimatePresence>
+                      </div>
+                      <div className="volunteering-card-indicators">
+                        {otcImages.map((_, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className={`volunteering-card-indicator ${currentOTCImageIndex === imgIndex ? 'active' : ''}`}
                           />
                         ))}
                       </div>
