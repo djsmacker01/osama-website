@@ -21,7 +21,7 @@ const About = () => {
       side: 'left'
     },
     {
-      year: '2018',
+      year: '2023',
       title: 'GRADUATES WITH MECHANICAL ENGINEERING DEGREE',
       location: 'CARDIFF',
       description: 'Completed his Mechanical Engineering degree, gaining a strong foundation in problem-solving, systems thinking, and technical innovation. This engineering background would later inform his approach to software development and AI solutions.',
