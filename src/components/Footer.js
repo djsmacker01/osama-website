@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { staggerContainer } from '../utils/animations';
 
 const Footer = () => {
@@ -294,9 +295,7 @@ const Footer = () => {
           >
             Terms & Conditions
           </motion.a>
-          <motion.a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); }}
+          <motion.div
             whileHover={{ 
               x: 5,
               transition: { duration: 0.2 }
@@ -305,12 +304,11 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.8 }}
+            style={{ display: 'inline-block' }}
           >
-            Privacy Policy
-          </motion.a>
-          <motion.a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); }}
+            <Link to="/privacy-policy">Privacy Policy</Link>
+          </motion.div>
+          <motion.div
             whileHover={{ 
               x: 5,
               transition: { duration: 0.2 }
@@ -319,9 +317,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.9 }}
+            style={{ display: 'inline-block' }}
           >
-            Cookie Policy
-          </motion.a>
+            <Link to="/cookie-policy">Cookie Policy</Link>
+          </motion.div>
         </motion.div>
         <motion.div 
           className="footer-credit"
