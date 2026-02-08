@@ -1,28 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { scrollReveal, cardHover, professionalStaggerContainer, professionalCardReveal } from '../utils/animations';
+import { professionalStaggerContainer } from '../utils/animations';
 
 const WhatIDo = () => {
   const roles = [
     {
       title: "Tech Business Consultant",
+      icon: "01",
       description: "Nurudeen provides strategic technology consulting to businesses, helping them leverage AI, machine learning, automation, and data science to streamline operations and drive innovation. He optimizes workflows and implements tech-driven solutions that enhance productivity and competitiveness in the market."
     },
     {
       title: "Automation Specialist",
+      icon: "02",
       description: "Nurudeen designs and implements intelligent automation solutions that transform manual processes into efficient, scalable systems. From workflow optimization to AI-driven automation, he helps organizations reduce costs, eliminate bottlenecks, and free up teams to focus on high-value work."
     },
     {
       title: "Software Developer & Engineer",
-      description: "As Founder of SAAN-HUB Solutions, Nurudeen builds custom software, applications, and platforms that solve real-world problems. He specializes in web development, mobile apps, dashboards, and complete technical solutions—combining development expertise with consultancy to deliver products that scale and perform."
+      icon: "03",
+      description: "As Founder of SAAN-HUB Solutions, Nurudeen builds custom software, applications, and platforms that solve real-world problems. He specializes in web development, mobile apps, dashboards, and complete technical solutions\u2014combining development expertise with consultancy to deliver products that scale and perform."
     },
     {
       title: "Innovation & Talent Connector",
+      icon: "04",
       description: "Through SAAN-HUB Solutions, Nurudeen bridges technology and people. He connects businesses with top-tier talent in software engineering, AI, and technical fields, while also exploring R&D and game development projects. His work spans tech consulting, recruitment, and building solutions that make a meaningful impact."
     }
   ];
 
-  // Alternate animation directions for visual interest
   const getCardVariants = (index) => {
     const directions = [
       { x: -50, y: 50, rotateX: -10 },
@@ -120,9 +123,18 @@ const WhatIDo = () => {
               "--card-index": index
             }}
           >
+            <motion.span 
+              className="what-card-number"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 0.15, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 + (index * 0.1), duration: 0.6 }}
+            >
+              {role.icon}
+            </motion.span>
             <motion.h3
               initial={{ opacity: 0, x: -20 }}
-              animate={{ 
+              whileInView={{ 
                 opacity: 1, 
                 x: 0,
                 transition: { 
@@ -131,12 +143,13 @@ const WhatIDo = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }
               }}
+              viewport={{ once: true }}
             >
               {role.title}
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={{ 
+              whileInView={{ 
                 opacity: 1, 
                 y: 0,
                 transition: { 
@@ -145,6 +158,7 @@ const WhatIDo = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }
               }}
+              viewport={{ once: true }}
             >
               {role.description}
             </motion.p>

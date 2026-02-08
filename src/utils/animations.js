@@ -1,6 +1,7 @@
 // Animation configuration for Framer Motion
-// Centralized animation presets for consistent, subtle animations
+// Centralized animation presets for consistent, professional animations
 
+// ─── FADE ANIMATIONS ─────────────────────────────────────────────
 export const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
@@ -19,6 +20,7 @@ export const fadeIn = {
   transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
 };
 
+// ─── SLIDE ANIMATIONS ────────────────────────────────────────────
 export const slideInLeft = {
   initial: { opacity: 0, x: -50 },
   animate: { opacity: 1, x: 0 },
@@ -31,7 +33,7 @@ export const slideInRight = {
   transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
 };
 
-// Scroll-triggered animations
+// ─── SCROLL-TRIGGERED ANIMATIONS ─────────────────────────────────
 export const scrollReveal = {
   initial: { opacity: 0, y: 50 },
   whileInView: { opacity: 1, y: 0 },
@@ -39,7 +41,14 @@ export const scrollReveal = {
   transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] }
 };
 
-// Stagger children animations
+export const scrollRevealScale = {
+  initial: { opacity: 0, y: 40, scale: 0.95 },
+  whileInView: { opacity: 1, y: 0, scale: 1 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+};
+
+// ─── STAGGER ANIMATIONS ──────────────────────────────────────────
 export const staggerContainer = {
   initial: { opacity: 0 },
   animate: {
@@ -51,7 +60,18 @@ export const staggerContainer = {
   }
 };
 
-// Hover animations
+export const staggerContainerFast = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.1
+    }
+  }
+};
+
+// ─── HOVER ANIMATIONS ────────────────────────────────────────────
 export const hoverScale = {
   whileHover: { scale: 1.02 },
   transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
@@ -71,7 +91,7 @@ export const imageHover = {
   transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
 };
 
-// Button animations
+// ─── BUTTON ANIMATIONS ──────────────────────────────────────────
 export const buttonHover = {
   whileHover: { 
     scale: 1.05,
@@ -81,7 +101,7 @@ export const buttonHover = {
   transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] }
 };
 
-// Card animations
+// ─── CARD ANIMATIONS ─────────────────────────────────────────────
 export const cardHover = {
   whileHover: { 
     y: -12,
@@ -96,7 +116,7 @@ export const cardHover = {
   }
 };
 
-// Professional card reveal animation
+// ─── PROFESSIONAL CARD REVEAL ────────────────────────────────────
 export const professionalCardReveal = {
   initial: { 
     opacity: 0, 
@@ -119,7 +139,6 @@ export const professionalCardReveal = {
   }
 };
 
-// Stagger container for professional reveals
 export const professionalStaggerContainer = {
   initial: { opacity: 0 },
   animate: {
@@ -131,3 +150,121 @@ export const professionalStaggerContainer = {
   }
 };
 
+// ─── PAGE TRANSITION ─────────────────────────────────────────────
+export const pageTransition = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+};
+
+// ─── SECTION REVEAL ──────────────────────────────────────────────
+export const sectionReveal = {
+  initial: { opacity: 0, y: 80 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-120px" },
+  transition: { 
+    duration: 0.8, 
+    ease: [0.16, 1, 0.3, 1]
+  }
+};
+
+// ─── TEXT REVEAL (character by character) ─────────────────────────
+export const textRevealContainer = {
+  initial: { opacity: 0 },
+  whileInView: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.03,
+      delayChildren: 0.1
+    }
+  },
+  viewport: { once: true }
+};
+
+export const textRevealChar = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
+
+// ─── MAGNETIC HOVER (for buttons/interactive elements) ───────────
+export const magneticHover = {
+  whileHover: { 
+    scale: 1.08,
+    transition: { 
+      type: "spring", 
+      stiffness: 400, 
+      damping: 10 
+    }
+  },
+  whileTap: { 
+    scale: 0.95,
+    transition: { 
+      type: "spring", 
+      stiffness: 400, 
+      damping: 10 
+    }
+  }
+};
+
+// ─── GLOW PULSE (for CTA elements) ──────────────────────────────
+export const glowPulse = {
+  animate: {
+    boxShadow: [
+      "0 0 20px rgba(232, 255, 0, 0.0)",
+      "0 0 40px rgba(232, 255, 0, 0.15)",
+      "0 0 20px rgba(232, 255, 0, 0.0)"
+    ],
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+// ─── NAV LINK STAGGER ────────────────────────────────────────────
+export const navLinkVariants = {
+  initial: { opacity: 0, y: 20, x: -10 },
+  animate: { 
+    opacity: 1, 
+    y: 0, 
+    x: 0,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.16, 1, 0.3, 1] 
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    y: 10,
+    transition: { duration: 0.2 }
+  }
+};
+
+export const mobileMenuVariants = {
+  initial: { 
+    clipPath: "circle(0% at calc(100% - 40px) 40px)" 
+  },
+  animate: { 
+    clipPath: "circle(150% at calc(100% - 40px) 40px)",
+    transition: { 
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1] 
+    }
+  },
+  exit: { 
+    clipPath: "circle(0% at calc(100% - 40px) 40px)",
+    transition: { 
+      duration: 0.4, 
+      ease: [0.4, 0, 0.2, 1] 
+    }
+  }
+};
