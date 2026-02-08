@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { scrollReveal, staggerContainer, buttonHover } from '../utils/animations';
+import { ArrowRight } from '../utils/Icons';
 
 const StoryPreview = () => {
   return (
@@ -87,7 +88,7 @@ const StoryPreview = () => {
             }}
             {...buttonHover}
           >
-            Read Osama's story →
+            Read Nurudeen's story <ArrowRight size={18} />
           </motion.a>
         </motion.div>
       </motion.div>
