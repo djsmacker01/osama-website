@@ -1256,8 +1256,26 @@ nav.scrolled {
 }
 
 .award-icon {
-    font-size: 3rem;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 16px;
+    background: rgba(232, 255, 0, 0.08);
+    border: 1.5px solid rgba(232, 255, 0, 0.15);
+    color: var(--dark-bg);
+    transition: all 0.4s var(--transition-smooth);
+}
+
+.award-card:hover .award-icon {
+    background: var(--primary-yellow);
+    border-color: var(--primary-yellow);
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(232, 255, 0, 0.2);
 }
 
 .award-title {
@@ -1630,7 +1648,13 @@ nav.scrolled {
 
 .volunteering-location .location-pin {
     color: var(--primary-yellow);
-    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.volunteering-location .location-pin svg {
+    width: 16px;
+    height: 16px;
 }
 
 .volunteering-description {
@@ -2016,6 +2040,16 @@ footer {
     line-height: 1.1;
 }
 
+.animated-tagline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.3em;
+}
+
+.animated-tagline span {
+    will-change: transform, opacity;
+}
+
 .timeline-wrapper {
     max-width: 1400px;
     margin: 0 auto;
@@ -2085,7 +2119,14 @@ footer {
 
 .location-pin {
     color: var(--primary-yellow);
-    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.location-pin svg {
+    width: 16px;
+    height: 16px;
 }
 
 .timeline-content-left p,
