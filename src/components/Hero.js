@@ -1,10 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { staggerContainer, hoverImage, buttonHover } from '../utils/animations';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { buttonHover } from '../utils/animations';
+
+const roles = ['ENTREPRENEUR', 'SPEAKER', 'INNOVATOR', 'DEVELOPER', 'FOUNDER'];
 
 const Hero = () => {
-  const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef(null);
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState(roles[0]);
+  const [isScrambling, setIsScrambling] = useState(false);
+
+  // Parallax effect using Framer Motion useScroll
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const imageX = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -13,29 +26,52 @@ const Hero = () => {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const elementTop = rect.top;
-        const elementHeight = rect.height;
-        
-        let progress = 0;
-        if (elementTop < windowHeight && elementTop + elementHeight > 0) {
-          progress = Math.max(0, Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight)));
-        }
-        
-        const translateX = -100 + (progress * 200);
-        setScrollY(translateX);
+  // Text scramble effect
+  const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*';
+  
+  const scrambleTo = useCallback((targetText) => {
+    setIsScrambling(true);
+    const maxLength = Math.max(displayText.length, targetText.length);
+    let iteration = 0;
+    const totalIterations = 12;
+
+    const interval = setInterval(() => {
+      setDisplayText(prev => {
+        const result = targetText
+          .padEnd(maxLength)
+          .split('')
+          .map((char, idx) => {
+            if (idx < iteration) return targetText[idx] || '';
+            return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+          })
+          .join('')
+          .trim();
+        return result;
+      });
+
+      iteration += 1;
+
+      if (iteration > totalIterations) {
+        clearInterval(interval);
+        setDisplayText(targetText);
+        setIsScrambling(false);
       }
-    };
+    }, 50);
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentRoleIndex(prev => {
+        const next = (prev + 1) % roles.length;
+        scrambleTo(roles[next]);
+        return next;
+      });
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [scrambleTo]);
 
   return (
     <section className="hero" id="home" ref={heroRef}>
@@ -45,7 +81,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       >
-        <div className="hero-content">
+        <motion.div className="hero-content" style={{ y: contentY }}>
           <motion.div 
             className="hero-main-text"
             initial={{ opacity: 0 }}
@@ -58,7 +94,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Nurudeen; <span>ENTREPRENEUR, SPEAKER, INNOVATOR, ORGANIZER</span> AND AUTHORITY IN AI, SOFTWARE DEVELOPMENT & DIGITAL SOLUTIONS.
+              Nurudeen; <span className="hero-role-scramble">{displayText}</span> AND AUTHORITY IN AI, SOFTWARE DEVELOPMENT & DIGITAL SOLUTIONS.
             </motion.div>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -79,27 +115,27 @@ const Hero = () => {
               onClick={() => scrollToSection('about')}
               {...buttonHover}
             >
-              ABOUT NURUDEEN →
+              <span>ABOUT NURUDEEN</span>
+              <motion.span
+                className="about-link-arrow"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                →
+              </motion.span>
             </motion.a>
           </motion.div>
-        </div>
+        </motion.div>
         <motion.div 
           className="hero-image"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
-          whileHover={{ 
-            scale: 1.03,
-            transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
-          }}
+          style={{ x: imageX, scale: imageScale }}
         >
           <img 
             src="/images/Headshot_1.png" 
             alt="Nurudeen Adedeji"
-            style={{ 
-              transform: `translateX(${scrollY}px)`,
-              transition: 'transform 0.1s ease-out'
-            }}
           />
         </motion.div>
       </motion.div>

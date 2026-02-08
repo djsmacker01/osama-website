@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
+import { MapPin } from '../utils/Icons';
 
 const Volunteering = () => {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
@@ -163,7 +164,7 @@ const Volunteering = () => {
                     </div>
                     <div className="volunteering-role">{engagement.role}</div>
                     <div className="volunteering-location">
-                      <span className="location-pin">📍</span>
+                      <span className="location-pin"><MapPin size={16} /></span>
                       <span>{engagement.location}</span>
                     </div>
                     <p className="volunteering-description">{engagement.description}</p>
@@ -227,7 +228,7 @@ const Volunteering = () => {
                     </div>
                     <div className="volunteering-role">{engagement.role}</div>
                     <div className="volunteering-location">
-                      <span className="location-pin">📍</span>
+                      <span className="location-pin"><MapPin size={16} /></span>
                       <span>{engagement.location}</span>
                     </div>
                     <p className="volunteering-description">{engagement.description}</p>
@@ -281,7 +282,7 @@ const Volunteering = () => {
                   </div>
                   <div className="volunteering-role">{engagement.role}</div>
                   <div className="volunteering-location">
-                    <span className="location-pin">📍</span>
+                    <span className="location-pin"><MapPin size={16} /></span>
                     <span>{engagement.location}</span>
                   </div>
                   <p className="volunteering-description">{engagement.description}</p>

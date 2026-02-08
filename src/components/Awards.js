@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
+import { Trophy, FlaskConical, Mic } from '../utils/Icons';
 
 const Awards = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -132,17 +133,17 @@ const Awards = () => {
 
   const awards = [
     { 
-      icon: "🏆", 
+      icon: <Trophy size={32} />, 
       title: "Finalist Award", 
       description: "National coding challenge by TargetJobs and Rolls-Royce, recognizing exceptional technical skills and innovative problem-solving in competitive programming." 
     },
     { 
-      icon: "🔬", 
+      icon: <FlaskConical size={32} />, 
       title: "STEM Ambassador", 
       description: "Recognized for outstanding contributions to STEM outreach and mentoring, inspiring the next generation of engineers, scientists, and technologists through educational initiatives and community engagement." 
     },
     { 
-      icon: "🎤", 
+      icon: <Mic size={32} />, 
       title: "Speaking Engagements", 
       description: "Featured speaker at Wales Tech Week, sharing expertise in tech and innovation, and contributing to thought leadership discussions on the future of technology, AI, and digital transformation." 
     }

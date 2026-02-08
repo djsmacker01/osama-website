@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { staggerContainer } from '../utils/animations';
+import { Check } from '../utils/Icons';
 
 const Footer = () => {
   const scrollToSection = (sectionId) => {
@@ -255,7 +256,9 @@ const Footer = () => {
             stiffness: 100
           }}
         >
-          <div className="footer-logo-icon"></div>
+          <div className="footer-logo-icon">
+            <Check size={18} />
+          </div>
         </motion.div>
         <motion.div 
           className="footer-copyright"

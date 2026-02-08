@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { scrollReveal, hoverImage, staggerContainer } from '../utils/animations';
+import { MapPin } from '../utils/Icons';
 
 const About = () => {
   const timelineEvents = [
@@ -151,7 +152,7 @@ const About = () => {
                 >
                   <h3>{event.title}</h3>
                   <div className="timeline-location">
-                    <span className="location-pin">📍</span>
+                    <span className="location-pin"><MapPin size={16} /></span>
                     <span>{event.location}</span>
                   </div>
                   <p>{event.description}</p>
@@ -168,7 +169,7 @@ const About = () => {
                 >
                   <h3>{event.title}</h3>
                   <div className="timeline-location">
-                    <span className="location-pin">📍</span>
+                    <span className="location-pin"><MapPin size={16} /></span>
                     <span>{event.location}</span>
                   </div>
                   <p>{event.description}</p>
