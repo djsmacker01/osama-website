@@ -1011,11 +1011,16 @@ nav.scrolled {
 }
 
 .venture-text li:before {
-    content: "→";
-    color: var(--primary-yellow);
+    content: "";
     position: absolute;
     left: 0;
-    font-weight: 700;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid var(--primary-yellow);
+    border-top: 2px solid var(--primary-yellow);
+    transform: translateY(-50%) rotate(45deg);
 }
 
 .venture-image {
@@ -2193,18 +2198,10 @@ footer {
     border: 2px solid var(--primary-yellow);
     border-radius: 50%;
     background: var(--dark-bg);
-    position: relative;
-}
-
-.footer-logo-icon::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--primary-yellow);
-    font-size: 1.2rem;
-    font-weight: 700;
 }
 
 .footer-copyright {
