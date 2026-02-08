@@ -3,6 +3,89 @@ import { motion } from 'framer-motion';
 import { scrollReveal, hoverImage, staggerContainer } from '../utils/animations';
 import { MapPin } from '../utils/Icons';
 
+// Letter-by-letter reveal component
+const AnimatedTagline = ({ text }) => {
+  const words = text.split(' ');
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.3,
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.04,
+      }
+    }
+  };
+
+  const letterVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      rotateX: -90,
+      filter: 'blur(8px)',
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      rotateX: 0,
+      filter: 'blur(0px)',
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 12,
+        mass: 0.8,
+      }
+    }
+  };
+
+  return (
+    <motion.span
+      className="animated-tagline"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      style={{ display: 'flex', flexWrap: 'wrap', gap: '0 0.3em' }}
+    >
+      {words.map((word, wordIndex) => (
+        <motion.span
+          key={wordIndex}
+          variants={wordVariants}
+          style={{ 
+            display: 'inline-flex', 
+            overflow: 'hidden',
+            perspective: '600px',
+          }}
+        >
+          {word.split('').map((letter, letterIndex) => (
+            <motion.span
+              key={letterIndex}
+              variants={letterVariants}
+              style={{ 
+                display: 'inline-block',
+                transformOrigin: 'bottom center',
+                willChange: 'transform, opacity, filter',
+              }}
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
+
 const About = () => {
   const timelineEvents = [
     {
@@ -76,14 +159,9 @@ const About = () => {
         >
           NURUDEEN ADEDEJI
         </motion.h1>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          FROM HUMBLE BEGINNINGS
-        </motion.h2>
+        <h2>
+          <AnimatedTagline text="FROM HUMBLE BEGINNINGS" />
+        </h2>
       </motion.div>
 
       <motion.div 
