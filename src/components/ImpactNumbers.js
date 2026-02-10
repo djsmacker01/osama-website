@@ -52,11 +52,11 @@ const AnimatedCounter = ({ target, suffix = '', prefix = '' }) => {
 
 const ImpactNumbers = () => {
   const stats = [
-    { number: "20", suffix: "+", label: "sold-out shows and live experiences delivered" },
-    { number: "2000", suffix: "+", prefix: "", label: "attendees at a single flagship youth music festival" },
-    { number: "120", suffix: "k+", prefix: "\u00A3", label: "social enterprise and project revenue generated" },
-    { number: "80", suffix: "k+", prefix: "\u00A3", label: "secured through successful bids and grants" },
-    { number: "5", suffix: "+", label: "universities and colleges in an active creative network" }
+    { number: "200", suffix: "+", label: "students taught through Code Club and STEM workshops" },
+    { number: "50", suffix: "+", label: "individuals mentored in tech careers" },
+    { number: "30", suffix: "+", label: "coding workshops delivered" },
+    { number: "10", suffix: "+", label: "tech projects helped launch" },
+    { number: "2700000", suffix: "+", label: "tasks supported through NHS Volunteer Responders programme" }
   ];
 
   return (
@@ -115,7 +115,7 @@ const ImpactNumbers = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          The result of combining marketing strategy, ticketing science, community insight and bold creative direction.
+          The result of combining technical mentorship, community education, and dedicated volunteering across technology and healthcare.
         </motion.p>
       </div>
     </motion.section>

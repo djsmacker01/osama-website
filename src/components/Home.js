@@ -7,8 +7,6 @@ import About from './About';
 import VenturesStrip from './VenturesStrip';
 import WhatIDo from './WhatIDo';
 import ImpactNumbers from './ImpactNumbers';
-import StoryPreview from './StoryPreview';
-import Timeline from './Timeline';
 import VenturesHighlight from './VenturesHighlight';
 import Projects from './Projects';
 import Awards from './Awards';
@@ -32,8 +30,6 @@ function Home() {
       <VenturesStrip />
       <WhatIDo />
       <ImpactNumbers />
-      <StoryPreview />
-      <Timeline />
       <VenturesHighlight />
       <Projects />
       <Awards />

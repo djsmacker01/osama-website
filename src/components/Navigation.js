@@ -206,7 +206,7 @@ const Navigation = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <a href="mailto:djsmacker01@gmail.com" className="mobile-menu-cta">
+                  <a href="mailto:adedeji.adewale2022@gmail.com" className="mobile-menu-cta">
                     GET IN TOUCH
                   </a>
                 </motion.div>

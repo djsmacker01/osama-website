@@ -87,7 +87,7 @@ const FinalCTA = () => {
       >
         <motion.button 
           className="btn-primary"
-          onClick={() => window.location.href = 'mailto:djsmacker01@gmail.com'}
+          onClick={() => window.location.href = 'mailto:adedeji.adewale2022@gmail.com'}
           {...buttonHover}
           {...glowPulse}
         >

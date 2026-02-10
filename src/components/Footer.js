@@ -36,7 +36,7 @@ const Footer = () => {
         viewport={{ once: true, margin: "-50px" }}
       >
         <motion.a 
-          href="https://linkedin.com" 
+          href="https://www.linkedin.com/in/nuruade/" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="social-icon"
@@ -101,7 +101,7 @@ const Footer = () => {
           </svg>
         </motion.a>
         <motion.a 
-          href="https://twitter.com" 
+          href="https://x.com/djsmacker01" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="social-icon"
@@ -200,7 +200,7 @@ const Footer = () => {
           </svg>
         </motion.a>
         <motion.a 
-          href="https://tiktok.com" 
+          href="https://www.tiktok.com/@djsmacker01" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="social-icon"
@@ -284,9 +284,7 @@ const Footer = () => {
             staggerChildren: 0.1
           }}
         >
-          <motion.a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); }}
+          <motion.div
             whileHover={{ 
               x: 5,
               transition: { duration: 0.2 }
@@ -295,9 +293,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.7 }}
+            style={{ display: 'inline-block' }}
           >
-            Terms & Conditions
-          </motion.a>
+            <Link to="/terms-and-conditions">Terms & Conditions</Link>
+          </motion.div>
           <motion.div
             whileHover={{ 
               x: 5,
