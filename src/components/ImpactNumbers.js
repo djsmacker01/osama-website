@@ -96,7 +96,7 @@ const ImpactNumbers = () => {
               }}
               {...cardHover}
             >
-              <div className="impact-number">
+              <div className={`impact-number ${stat.number.length >= 6 ? 'impact-number--long' : ''}`}>
                 <AnimatedCounter 
                   target={stat.number}
                   suffix={stat.suffix}
