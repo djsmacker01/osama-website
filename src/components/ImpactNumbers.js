@@ -14,7 +14,6 @@ const AnimatedCounter = ({ target, suffix = '', prefix = '' }) => {
       const numericTarget = parseInt(target.replace(/[^0-9]/g, ''), 10);
       const duration = 2000;
       const steps = 60;
-      const increment = numericTarget / steps;
       let current = 0;
       let step = 0;
 

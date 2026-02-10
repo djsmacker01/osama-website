@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { scrollReveal, imageHover, buttonHover, staggerContainer } from '../utils/animations';
+import { scrollReveal, buttonHover, staggerContainer } from '../utils/animations';
 
 const Speaking = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

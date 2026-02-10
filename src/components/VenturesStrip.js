@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
+import { cardHover, staggerContainer } from '../utils/animations';
 
 const VenturesStrip = () => {
   const ventures = [

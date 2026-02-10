@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { scrollReveal, imageHover, buttonHover } from '../utils/animations';
+import { imageHover, buttonHover } from '../utils/animations';
 
 const VenturesHighlight = () => {
   return (

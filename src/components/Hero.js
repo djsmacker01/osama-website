@@ -7,10 +7,10 @@ const roles = ['ENTREPRENEUR', 'SPEAKER', 'INNOVATOR', 'DEVELOPER', 'FOUNDER'];
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [, setCurrentRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState(roles[0]);
-  const [isScrambling, setIsScrambling] = useState(false);
-  const { isMobile, isTouch } = useIsMobile();
+  const [, setIsScrambling] = useState(false);
+  const { isMobile } = useIsMobile();
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -60,7 +60,7 @@ const Hero = () => {
     }, intervalSpeed);
 
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, [isMobile, displayText.length]);
 
   useEffect(() => {
     const timer = setInterval(() => {

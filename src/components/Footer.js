@@ -5,18 +5,6 @@ import { staggerContainer } from '../utils/animations';
 import { Check } from '../utils/Icons';
 
 const Footer = () => {
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const navHeight = 80;
-      const targetPosition = section.offsetTop - navHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   return (
     <motion.footer 
       className="footer"

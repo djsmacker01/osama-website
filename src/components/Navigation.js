@@ -103,7 +103,11 @@ const Navigation = () => {
             {navItems.map((item) => (
               <li key={item.id}>
                 <a
-                  onClick={() => scrollToSection(item.id)}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
                   className={activeSection === item.id ? 'active' : ''}
                 >
                   {item.label}
@@ -183,7 +187,11 @@ const Navigation = () => {
                       whileTap={{ scale: 0.95, x: 5 }}
                     >
                       <a
-                        onClick={() => scrollToSection(item.id)}
+                        href={`#${item.id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToSection(item.id);
+                        }}
                         className={activeSection === item.id ? 'active' : ''}
                       >
                         <span className="mobile-link-number">0{index + 1}</span>
