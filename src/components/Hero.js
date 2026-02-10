@@ -137,6 +137,8 @@ const Hero = () => {
           <img
             src="/images/Headshot_1.png"
             alt="Nurudeen Adedeji"
+            fetchPriority="high"
+            decoding="async"
           />
         </motion.div>
       </motion.div>

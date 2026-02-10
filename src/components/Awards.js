@@ -368,6 +368,7 @@ const Awards = () => {
                       src={finalistAwardImages[currentImageIndex].src}
                       alt={finalistAwardImages[currentImageIndex].title}
                       className="award-modal-image"
+                      decoding="async"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -499,6 +500,7 @@ const Awards = () => {
                       src={stemAmbassadorImages[currentStemIndex].src}
                       alt={stemAmbassadorImages[currentStemIndex].title}
                       className="award-modal-image"
+                      decoding="async"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -583,6 +585,7 @@ const Awards = () => {
                       src={speakingEngagementsImages[currentSpeakingIndex].src}
                       alt={speakingEngagementsImages[currentSpeakingIndex].title}
                       className="award-modal-image"
+                      decoding="async"
                     />
                   </motion.div>
                 </AnimatePresence>

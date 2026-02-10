@@ -78,6 +78,8 @@ const Speaking = () => {
                 src={speakingImages[currentImageIndex].src}
                 alt={speakingImages[currentImageIndex].alt}
                 className="speaking-slideshow-image"
+                loading="lazy"
+                decoding="async"
                 initial={{ opacity: 0, scale: 1.1, filter: 'blur(4px)' }}
                 animate={{ 
                   opacity: 1, 

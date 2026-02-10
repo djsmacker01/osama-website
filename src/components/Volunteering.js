@@ -249,6 +249,8 @@ const Volunteering = () => {
                             src={gtImages[currentGTImageIndex]}
                             alt={`GT Scholars evidence ${currentGTImageIndex + 1}`}
                             className="volunteering-card-image"
+                            loading="lazy"
+                            decoding="async"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.1 }}
@@ -323,6 +325,8 @@ const Volunteering = () => {
                             src={nhsImages[currentNHSImageIndex]}
                             alt={`NHS Volunteer Responders evidence ${currentNHSImageIndex + 1}`}
                             className="volunteering-card-image"
+                            loading="lazy"
+                            decoding="async"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.1 }}
@@ -397,6 +401,8 @@ const Volunteering = () => {
                             src={abilityNetImages[currentImageIndex]}
                             alt={`AbilityNet evidence ${currentImageIndex + 1}`}
                             className="volunteering-card-image"
+                            loading="lazy"
+                            decoding="async"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.1 }}
@@ -461,6 +467,8 @@ const Volunteering = () => {
                             src={otcImages[currentOTCImageIndex]}
                             alt={`Off the Curriculum evidence ${currentOTCImageIndex + 1}`}
                             className="volunteering-card-image"
+                            loading="lazy"
+                            decoding="async"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.1 }}
@@ -525,6 +533,8 @@ const Volunteering = () => {
                             src={stemCommunityImages[currentStemAmbassadorImageIndex]}
                             alt={`STEM Community ${currentStemAmbassadorImageIndex + 1}`}
                             className="volunteering-card-image"
+                            loading="lazy"
+                            decoding="async"
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.1 }}

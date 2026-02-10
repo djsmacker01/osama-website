@@ -97,6 +97,8 @@ const Projects = () => {
                   src={project.image} 
                   alt={project.name}
                   className="project-image"
+                  loading="lazy"
+                  decoding="async"
                   {...scrollReveal}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}

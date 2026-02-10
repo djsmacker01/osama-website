@@ -51,7 +51,7 @@ const VenturesHighlight = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           {...imageHover}
         >
-          <img src="/images/SAAN-HUB Solutions.jpeg" alt="SAAN-HUB Solutions" />
+          <img src="/images/SAAN-HUB Solutions.jpeg" alt="SAAN-HUB Solutions" loading="lazy" decoding="async" />
         </motion.div>
       </motion.div>
 
@@ -97,7 +97,7 @@ const VenturesHighlight = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           {...imageHover}
         >
-          <img src="/images/ai.png" alt="AI & Software Development" />
+          <img src="/images/ai.png" alt="AI & Software Development" loading="lazy" decoding="async" />
         </motion.div>
       </motion.div>
     </motion.section>

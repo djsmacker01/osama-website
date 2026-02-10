@@ -85,7 +85,7 @@ const AboutPage = () => {
                 <>
                   <motion.div className="timeline-content-left">
                     <motion.div className="timeline-image" {...hoverImage}>
-                      <img src={event.image} alt={event.title} />
+                      <img src={event.image} alt={event.title} loading="lazy" decoding="async" />
                     </motion.div>
                   </motion.div>
                   <motion.div className="timeline-content-right">
@@ -113,7 +113,7 @@ const AboutPage = () => {
                   </motion.div>
                   <motion.div className="timeline-content-right">
                     <motion.div className="timeline-image" {...hoverImage}>
-                      <img src={event.image} alt={event.title} />
+                      <img src={event.image} alt={event.title} loading="lazy" decoding="async" />
                     </motion.div>
                   </motion.div>
                 </>

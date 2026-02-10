@@ -80,7 +80,7 @@ const About = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <motion.div className="timeline-image" {...hoverImage}>
-                    <img src={event.image} alt={event.title} />
+                    <img src={event.image} alt={event.title} loading="lazy" decoding="async" />
                   </motion.div>
                 </motion.div>
                 <motion.div
@@ -126,7 +126,7 @@ const About = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <motion.div className="timeline-image" {...hoverImage}>
-                    <img src={event.image} alt={event.title} />
+                    <img src={event.image} alt={event.title} loading="lazy" decoding="async" />
                   </motion.div>
                 </motion.div>
               </>
