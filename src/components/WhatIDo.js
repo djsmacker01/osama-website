@@ -62,7 +62,7 @@ const WhatIDo = () => {
   return (
     <motion.section 
       className="what-i-do" 
-      id="about"
+      id="what-i-do"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
