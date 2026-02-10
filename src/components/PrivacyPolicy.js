@@ -56,6 +56,7 @@ const PrivacyPolicy = () => {
             </motion.div>
             <ul className={`privacy-nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
               <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
+              <li><Link to="/terms-and-conditions" onClick={() => setIsMobileMenuOpen(false)}>Terms & Conditions</Link></li>
               <li><Link to="/privacy-policy" onClick={() => setIsMobileMenuOpen(false)}>Privacy Policy</Link></li>
               <li><Link to="/cookie-policy" onClick={() => setIsMobileMenuOpen(false)}>Cookie Policy</Link></li>
             </ul>
@@ -91,7 +92,7 @@ const PrivacyPolicy = () => {
               </li>
               <li>
                 If you have any queries, need to update your personal data or wish to exercise your rights then please contact us on 
-                <a href="mailto:djsmacker01@gmail.com"> djsmacker01@gmail.com</a>.
+                <a href="mailto:adedeji.adewale2022@gmail.com"> adedeji.adewale2022@gmail.com</a>.
               </li>
               <li>
                 We use a CRM (i.e. direct marketing / client relationship portal) operated by a US Provider.
@@ -283,7 +284,7 @@ const PrivacyPolicy = () => {
             <p>
               Technical and organisational measures include measures to deal with any suspected data breach. If you suspect any misuse or loss or 
               unauthorised access to your Data, please let us know immediately by contacting us via this e-mail address: 
-              <a href="mailto:djsmacker01@gmail.com"> djsmacker01@gmail.com</a>.
+              <a href="mailto:adedeji.adewale2022@gmail.com"> adedeji.adewale2022@gmail.com</a>.
             </p>
           </div>
 
@@ -307,7 +308,7 @@ const PrivacyPolicy = () => {
             <p>
               To make enquiries, exercise any of your rights set out above, or withdraw your consent to the processing of your Data (where consent 
               is our legal basis for processing your Data), please contact us via this e-mail address: 
-              <a href="mailto:djsmacker01@gmail.com"> djsmacker01@gmail.com</a>. Please note:
+              <a href="mailto:adedeji.adewale2022@gmail.com"> adedeji.adewale2022@gmail.com</a>. Please note:
             </p>
             <ul>
               <li>

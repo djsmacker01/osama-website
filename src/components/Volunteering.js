@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
-import { MapPin } from '../utils/Icons';
+import { MapPin, ExternalLink } from '../utils/Icons';
 
 const Volunteering = () => {
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentOTCImageIndex, setCurrentOTCImageIndex] = useState(0);
+  const [currentStemAmbassadorImageIndex, setCurrentStemAmbassadorImageIndex] = useState(0);
+  const [currentNHSImageIndex, setCurrentNHSImageIndex] = useState(0);
+  const [currentGTImageIndex, setCurrentGTImageIndex] = useState(0);
+
+  const gtImages = [
+    '/images/GT-01.png',
+    '/images/GT-02.png',
+    '/images/GT-03.png'
+  ];
+
+  const nhsImages = [
+    '/images/NHS_01.png',
+    '/images/NHS_02.png'
+  ];
 
   const abilityNetImages = [
     '/images/AbilityNet-1.png',
@@ -19,6 +33,12 @@ const Volunteering = () => {
     '/images/OTC-2.png',
     '/images/OTC-3.png',
     '/images/OTC.png'
+  ];
+
+  const stemCommunityImages = [
+    '/images/community-dashboard.png',
+    '/images/feedback-comment-on-my-post.png',
+    '/images/creating-content-on-the-STEM-Community.png'
   ];
 
   // Auto-advance slideshow when AbilityNet card is hovered
@@ -44,14 +64,51 @@ const Volunteering = () => {
       setCurrentOTCImageIndex(0); // Reset when not hovering
     }
   }, [hoveredCardIndex, otcImages.length]);
+
+  // Auto-advance slideshow when STEM Ambassador card is hovered
+  useEffect(() => {
+    if (hoveredCardIndex === 4) { // STEM Ambassador Program is at index 4
+      const interval = setInterval(() => {
+        setCurrentStemAmbassadorImageIndex((prev) => (prev + 1) % stemCommunityImages.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    } else {
+      setCurrentStemAmbassadorImageIndex(0); // Reset when not hovering
+    }
+  }, [hoveredCardIndex, stemCommunityImages.length]);
+
+  // Auto-advance slideshow when NHS card is hovered
+  useEffect(() => {
+    if (hoveredCardIndex === 2) { // NHS and Care Volunteer Responders is at index 2
+      const interval = setInterval(() => {
+        setCurrentNHSImageIndex((prev) => (prev + 1) % nhsImages.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    } else {
+      setCurrentNHSImageIndex(0); // Reset when not hovering
+    }
+  }, [hoveredCardIndex, nhsImages.length]);
+
+  // Auto-advance slideshow when GT Scholars card is hovered
+  useEffect(() => {
+    if (hoveredCardIndex === 0) { // GT Scholars is at index 0
+      const interval = setInterval(() => {
+        setCurrentGTImageIndex((prev) => (prev + 1) % gtImages.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    } else {
+      setCurrentGTImageIndex(0); // Reset when not hovering
+    }
+  }, [hoveredCardIndex, gtImages.length]);
+
   const volunteeringEngagements = [
     {
-      organization: 'Tech for Good Initiative',
-      role: 'Mentor & Technical Advisor',
-      location: 'Cardiff, Wales',
-      period: '2021 - Present',
-      description: 'Providing technical mentorship and guidance to aspiring software developers and entrepreneurs from underrepresented communities. Helping bridge the gap between education and industry.',
-      impact: 'Mentored 50+ individuals, helped launch 10+ tech projects'
+      organization: 'GT Scholars',
+      role: 'Code Creators Club Facilitator',
+      location: 'UK (Remote)',
+      period: '2025 - Present',
+      description: 'Facilitating the Code Creators Club for GT Scholars, an award-winning social enterprise supporting young people aged 11-18. Delivering technical mentorship and guidance through tutoring, mentoring and career insight programmes that help scholars achieve their academic and career aspirations regardless of background.',
+      impact: 'Supporting young people through coding workshops and career development programmes as part of an organisation that boosts social mobility for disadvantaged youth'
     },
     {
       organization: 'Code Club Wales',
@@ -62,12 +119,12 @@ const Volunteering = () => {
       impact: 'Taught 200+ students, organized 30+ coding workshops'
     },
     {
-      organization: 'AI Education Outreach',
-      role: 'Workshop Facilitator',
-      location: 'Online & Cardiff',
-      period: '2022 - Present',
-      description: 'Delivering workshops and seminars on AI fundamentals, machine learning basics, and the ethical implications of AI technology. Making complex AI concepts accessible to diverse audiences.',
-      impact: 'Reached 500+ participants across 20+ workshops'
+      organization: 'NHS and Care Volunteer Responders',
+      role: 'Volunteer Responder',
+      location: 'UK',
+      period: '2022 - May 2025',
+      description: 'Completed tasks and shifts supporting the NHS and vulnerable people across the country. Volunteer roles included community response (shopping, prescriptions, accompaniment), telephone support to reduce loneliness and isolation, and other activities helping patients and people in need.',
+      impact: 'Contributed to a national programme that completed over 2.7 million tasks and shifts, supporting hundreds of thousands of patients and vulnerable people across the UK'
     },
     {
       organization: 'AbilityNet',
@@ -83,7 +140,7 @@ const Volunteering = () => {
       location: 'Wales, UK',
       period: '2019 - Present',
       description: 'Inspiring young people to pursue careers in Science, Technology, Engineering, and Mathematics. Delivering talks, workshops, and career guidance sessions in schools and community centers.',
-      impact: 'Engaged 1000+ students across 50+ schools'
+      impact: 'Engaged students across schools and community centers'
     },
     {
       organization: 'Off the Curriculum (OTC)',
@@ -132,7 +189,7 @@ const Volunteering = () => {
           {volunteeringEngagements.map((engagement, index) => (
             <motion.div 
               key={index} 
-              className={`volunteering-card ${index === 3 || index === 5 ? 'volunteering-card-flip' : ''}`}
+              className={`volunteering-card ${index === 0 || index === 2 || index === 3 || index === 4 || index === 5 ? 'volunteering-card-flip' : ''}`}
               variants={{
                 initial: { opacity: 0, y: 30 },
                 animate: { 
@@ -141,12 +198,160 @@ const Volunteering = () => {
                   transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
                 }
               }}
-              {...(index !== 3 && index !== 5 ? cardHover : {})}
-              onMouseEnter={() => (index === 3 || index === 5) && setHoveredCardIndex(index)}
-              onMouseLeave={() => (index === 3 || index === 5) && setHoveredCardIndex(null)}
+              {...(index !== 0 && index !== 2 && index !== 3 && index !== 4 && index !== 5 ? cardHover : {})}
+              onMouseEnter={() => (index === 0 || index === 2 || index === 3 || index === 4 || index === 5) && setHoveredCardIndex(index)}
+              onMouseLeave={() => (index === 0 || index === 2 || index === 3 || index === 4 || index === 5) && setHoveredCardIndex(null)}
               style={{ position: 'relative', perspective: '1000px' }}
             >
-              {index === 3 ? (
+              {index === 0 ? (
+                <>
+                  {/* Front of card - GT Scholars */}
+                  <motion.div 
+                    className="volunteering-card-front"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 0 ? 180 : 0,
+                      opacity: hoveredCardIndex === 0 ? 0 : 1
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-header">
+                      <h3>{engagement.organization}</h3>
+                      <span className="volunteering-period">{engagement.period}</span>
+                    </div>
+                    <div className="volunteering-role">{engagement.role}</div>
+                    <div className="volunteering-location">
+                      <span className="location-pin"><MapPin size={16} /></span>
+                      <span>{engagement.location}</span>
+                    </div>
+                    <p className="volunteering-description">{engagement.description}</p>
+                    <div className="volunteering-impact">
+                      <strong>Impact:</strong> {engagement.impact}
+                    </div>
+                  </motion.div>
+
+                  {/* Back of card with GT Scholars evidence images */}
+                  <motion.div 
+                    className="volunteering-card-back"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 0 ? 0 : 180,
+                      opacity: hoveredCardIndex === 0 ? 1 : 0
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-card-back-content">
+                      <h3 className="volunteering-card-back-title">{engagement.organization}</h3>
+                      <div className="volunteering-card-images">
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={currentGTImageIndex}
+                            src={gtImages[currentGTImageIndex]}
+                            alt={`GT Scholars evidence ${currentGTImageIndex + 1}`}
+                            className="volunteering-card-image"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </AnimatePresence>
+                      </div>
+                      <div className="volunteering-card-indicators">
+                        {gtImages.map((_, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className={`volunteering-card-indicator ${currentGTImageIndex === imgIndex ? 'active' : ''}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              ) : index === 2 ? (
+                <>
+                  {/* Front of card - NHS and Care Volunteer Responders */}
+                  <motion.div 
+                    className="volunteering-card-front"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 2 ? 180 : 0,
+                      opacity: hoveredCardIndex === 2 ? 0 : 1
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-header">
+                      <h3>{engagement.organization}</h3>
+                      <span className="volunteering-period">{engagement.period}</span>
+                    </div>
+                    <div className="volunteering-role">{engagement.role}</div>
+                    <div className="volunteering-location">
+                      <span className="location-pin"><MapPin size={16} /></span>
+                      <span>{engagement.location}</span>
+                    </div>
+                    <p className="volunteering-description">{engagement.description}</p>
+                    <div className="volunteering-impact">
+                      <strong>Impact:</strong> {engagement.impact}
+                    </div>
+                    <a 
+                      href="/certificates/NHS-volunteer-certificate.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="volunteering-certificate-link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <ExternalLink size={14} />
+                      View certificate (PDF)
+                    </a>
+                  </motion.div>
+
+                  {/* Back of card with NHS evidence images */}
+                  <motion.div 
+                    className="volunteering-card-back"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 2 ? 0 : 180,
+                      opacity: hoveredCardIndex === 2 ? 1 : 0
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-card-back-content">
+                      <h3 className="volunteering-card-back-title">{engagement.organization}</h3>
+                      <div className="volunteering-card-images">
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={currentNHSImageIndex}
+                            src={nhsImages[currentNHSImageIndex]}
+                            alt={`NHS Volunteer Responders evidence ${currentNHSImageIndex + 1}`}
+                            className="volunteering-card-image"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </AnimatePresence>
+                      </div>
+                      <div className="volunteering-card-indicators">
+                        {nhsImages.map((_, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className={`volunteering-card-indicator ${currentNHSImageIndex === imgIndex ? 'active' : ''}`}
+                          />
+                        ))}
+                      </div>
+                      <a 
+                        href="/certificates/NHS-volunteer-certificate.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="volunteering-certificate-link volunteering-certificate-link-back"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink size={14} />
+                        Download certificate (PDF)
+                      </a>
+                    </div>
+                  </motion.div>
+                </>
+              ) : index === 3 ? (
                 <>
                   {/* Front of card */}
                   <motion.div 
@@ -268,6 +473,70 @@ const Volunteering = () => {
                           <div
                             key={imgIndex}
                             className={`volunteering-card-indicator ${currentOTCImageIndex === imgIndex ? 'active' : ''}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              ) : index === 4 ? (
+                <>
+                  {/* Front of card - STEM Ambassador Program */}
+                  <motion.div 
+                    className="volunteering-card-front"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 4 ? 180 : 0,
+                      opacity: hoveredCardIndex === 4 ? 0 : 1
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-header">
+                      <h3>{engagement.organization}</h3>
+                      <span className="volunteering-period">{engagement.period}</span>
+                    </div>
+                    <div className="volunteering-role">{engagement.role}</div>
+                    <div className="volunteering-location">
+                      <span className="location-pin"><MapPin size={16} /></span>
+                      <span>{engagement.location}</span>
+                    </div>
+                    <p className="volunteering-description">{engagement.description}</p>
+                    <div className="volunteering-impact">
+                      <strong>Impact:</strong> {engagement.impact}
+                    </div>
+                  </motion.div>
+
+                  {/* Back of card with STEM Community images */}
+                  <motion.div 
+                    className="volunteering-card-back"
+                    animate={{ 
+                      rotateY: hoveredCardIndex === 4 ? 0 : 180,
+                      opacity: hoveredCardIndex === 4 ? 1 : 0
+                    }}
+                    transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ backfaceVisibility: 'hidden' }}
+                  >
+                    <div className="volunteering-card-back-content">
+                      <h3 className="volunteering-card-back-title">{engagement.organization}</h3>
+                      <div className="volunteering-card-images">
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={currentStemAmbassadorImageIndex}
+                            src={stemCommunityImages[currentStemAmbassadorImageIndex]}
+                            alt={`STEM Community ${currentStemAmbassadorImageIndex + 1}`}
+                            className="volunteering-card-image"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                          />
+                        </AnimatePresence>
+                      </div>
+                      <div className="volunteering-card-indicators">
+                        {stemCommunityImages.map((_, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className={`volunteering-card-indicator ${currentStemAmbassadorImageIndex === imgIndex ? 'active' : ''}`}
                           />
                         ))}
                       </div>

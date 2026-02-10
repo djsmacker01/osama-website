@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { navLinkVariants, mobileMenuVariants } from '../utils/animations';
+import { useSwipeGesture } from '../hooks/useSwipeGesture';
 
 const navItems = [
   { id: 'home', label: 'Home' },
@@ -17,7 +18,6 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
-  // Scroll progress bar
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -25,7 +25,11 @@ const Navigation = () => {
     restDelta: 0.001
   });
 
-  // Track active section on scroll
+  const swipeHandlers = useSwipeGesture({
+    onSwipeRight: () => setIsMobileMenuOpen(false),
+    threshold: 80,
+  });
+
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 100);
 
@@ -49,7 +53,6 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -62,7 +65,7 @@ const Navigation = () => {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      const navHeight = 80;
+      const navHeight = window.innerWidth <= 768 ? 60 : 80;
       const targetPosition = section.offsetTop - navHeight;
       window.scrollTo({
         top: targetPosition,
@@ -74,21 +77,20 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
       <motion.div
         className="scroll-progress"
         style={{ scaleX }}
       />
 
-      <motion.nav 
+      <motion.nav
         className={isScrolled ? 'scrolled' : ''}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="nav-container">
-          <motion.div 
-            className="logo" 
+          <motion.div
+            className="logo"
             onClick={() => scrollToSection('home')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -97,17 +99,16 @@ const Navigation = () => {
             NURUDEEN
           </motion.div>
 
-          {/* Desktop Links */}
           <ul className="nav-links-desktop">
             {navItems.map((item) => (
               <li key={item.id}>
-                <a 
+                <a
                   onClick={() => scrollToSection(item.id)}
                   className={activeSection === item.id ? 'active' : ''}
                 >
                   {item.label}
                   {activeSection === item.id && (
-                    <motion.div 
+                    <motion.div
                       className="nav-active-indicator"
                       layoutId="navIndicator"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -118,8 +119,7 @@ const Navigation = () => {
             ))}
           </ul>
 
-          {/* Hamburger */}
-          <motion.div 
+          <motion.div
             className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.9 }}
@@ -140,11 +140,9 @@ const Navigation = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="mobile-menu-backdrop"
               initial={{ opacity: 0 }}
@@ -154,16 +152,16 @@ const Navigation = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Menu Panel */}
             <motion.div
               className="mobile-menu"
               variants={mobileMenuVariants}
               initial="initial"
               animate="animate"
               exit="exit"
+              {...swipeHandlers}
             >
               <div className="mobile-menu-content">
-                <motion.div 
+                <motion.div
                   className="mobile-menu-header"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -174,7 +172,7 @@ const Navigation = () => {
 
                 <ul className="mobile-menu-links">
                   {navItems.map((item, index) => (
-                    <motion.li 
+                    <motion.li
                       key={item.id}
                       variants={navLinkVariants}
                       initial="initial"
@@ -182,15 +180,16 @@ const Navigation = () => {
                       exit="exit"
                       custom={index}
                       transition={{ delay: 0.2 + index * 0.06 }}
+                      whileTap={{ scale: 0.95, x: 5 }}
                     >
-                      <a 
+                      <a
                         onClick={() => scrollToSection(item.id)}
                         className={activeSection === item.id ? 'active' : ''}
                       >
                         <span className="mobile-link-number">0{index + 1}</span>
                         <span className="mobile-link-text">{item.label}</span>
                         {activeSection === item.id && (
-                          <motion.span 
+                          <motion.span
                             className="mobile-link-active"
                             layoutId="mobileNavIndicator"
                           />
@@ -200,7 +199,7 @@ const Navigation = () => {
                   ))}
                 </ul>
 
-                <motion.div 
+                <motion.div
                   className="mobile-menu-footer"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

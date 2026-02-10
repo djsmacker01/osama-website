@@ -56,6 +56,7 @@ const CookiePolicy = () => {
             </motion.div>
             <ul className={`cookie-nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
               <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
+              <li><Link to="/terms-and-conditions" onClick={() => setIsMobileMenuOpen(false)}>Terms & Conditions</Link></li>
               <li><Link to="/privacy-policy" onClick={() => setIsMobileMenuOpen(false)}>Privacy Policy</Link></li>
               <li><Link to="/cookie-policy" onClick={() => setIsMobileMenuOpen(false)}>Cookie Policy</Link></li>
             </ul>
@@ -205,7 +206,7 @@ const CookiePolicy = () => {
             </p>
             <p>You may contact us:</p>
             <ul>
-              <li>by email at <a href="mailto:djsmacker01@gmail.com">djsmacker01@gmail.com</a>.</li>
+              <li>by email at <a href="mailto:adedeji.adewale2022@gmail.com">adedeji.adewale2022@gmail.com</a>.</li>
               <li>using the contact form on the Website.</li>
             </ul>
           </div>

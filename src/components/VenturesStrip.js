@@ -5,24 +5,28 @@ import { scrollReveal, cardHover, staggerContainer } from '../utils/animations';
 const VenturesStrip = () => {
   const ventures = [
     {
-      title: "OTID Entertainment / OTID.Agency",
-      description: "Global marketing, events, media and festival company working with brands, platforms and institutions."
+      title: "Brand & Campaign Strategy",
+      description: "Leading global marketing and campaign strategy for brands, platforms and institutions across events, media and festivals."
     },
     {
-      title: "Afrowales",
-      description: "Social impact platform amplifying underrepresented voices through inclusive events, festivals and youth engagement."
+      title: "Community & Inclusion",
+      description: "Designing and delivering social impact programmes that amplify underrepresented voices through inclusive events, festivals and youth engagement."
     },
     {
-      title: "Black Welsh Music Awards",
-      description: "Head of Marketing and PR for a new national platform championing Black Welsh talent."
+      title: "Marketing & PR",
+      description: "Building and leading marketing and communications for national platforms that champion talent and culture."
     },
     {
-      title: "MyPhlexIT",
-      description: "Regional Director of Sales and Marketing for a next-generation ticketing and event discovery platform."
+      title: "Sales & Platform Growth",
+      description: "Driving regional sales and marketing for next-generation ticketing and event discovery platforms."
     },
     {
-      title: "Cymru Unleashed",
-      description: "Curator and creative lead for UEFA-backed youth and sport projects."
+      title: "Creative Curation & Partnerships",
+      description: "Curating and leading youth and sport projects in partnership with major organisations."
+    },
+    {
+      title: "Free Web & App Builds for SMEs",
+      description: "Building websites and mobile applications at no charge for small and medium enterprises that are registered with Companies House and pay their taxes."
     },
     {
       title: "Speaking and Advisory",

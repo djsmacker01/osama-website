@@ -37,7 +37,7 @@ const VenturesHighlight = () => {
           </ul>
           <motion.button 
             className="btn-primary"
-            onClick={() => window.location.href = 'mailto:djsmacker01@gmail.com'}
+            onClick={() => window.location.href = 'mailto:adedeji.adewale2022@gmail.com'}
             {...buttonHover}
           >
             EXPLORE SAAN-HUB
@@ -83,7 +83,7 @@ const VenturesHighlight = () => {
           </ul>
           <motion.button 
             className="btn-primary"
-            onClick={() => window.location.href = 'mailto:djsmacker01@gmail.com'}
+            onClick={() => window.location.href = 'mailto:adedeji.adewale2022@gmail.com'}
             {...buttonHover}
           >
             GET IN TOUCH

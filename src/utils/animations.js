@@ -250,21 +250,76 @@ export const navLinkVariants = {
 };
 
 export const mobileMenuVariants = {
-  initial: { 
-    clipPath: "circle(0% at calc(100% - 40px) 40px)" 
+  initial: {
+    clipPath: "circle(0% at calc(100% - 40px) 40px)"
   },
-  animate: { 
+  animate: {
     clipPath: "circle(150% at calc(100% - 40px) 40px)",
-    transition: { 
-      duration: 0.6, 
-      ease: [0.16, 1, 0.3, 1] 
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1]
     }
   },
-  exit: { 
+  exit: {
     clipPath: "circle(0% at calc(100% - 40px) 40px)",
-    transition: { 
-      duration: 0.4, 
-      ease: [0.4, 0, 0.2, 1] 
+    transition: {
+      duration: 0.4,
+      ease: [0.4, 0, 0.2, 1]
     }
   }
+};
+
+// ─── MOBILE-OPTIMIZED VARIANTS ─────────────────────────────────
+export const mobileScrollReveal = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+};
+
+export const mobileFadeInUp = {
+  initial: { opacity: 0, y: 15 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+};
+
+export const mobileStaggerContainer = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.1
+    }
+  }
+};
+
+export const tapFeedback = {
+  whileTap: {
+    scale: 0.97,
+    transition: { duration: 0.1, ease: "easeOut" }
+  }
+};
+
+export const mobileCardReveal = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+  }
+};
+
+export const reducedMotion = {
+  initial: { opacity: 1, y: 0 },
+  animate: { opacity: 1, y: 0 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0 }
+};
+
+// ─── CONDITIONAL ANIMATION HELPER ──────────────────────────────
+export const getVariant = (desktop, mobile, { isMobile, isReducedMotion } = {}) => {
+  if (isReducedMotion) return reducedMotion;
+  if (isMobile) return mobile || desktop;
+  return desktop;
 };

@@ -8,22 +8,39 @@ const Projects = () => {
   // Add your projects here with: name, description, image, techStack, liveLink, githubLink (optional)
   const projects = [
     {
-      name: "Project Name",
-      description: "A brief description of your project and what problem it solves.",
-      image: "/images/placeholder-project.jpg", // Add your project screenshot here
-      techStack: ["React", "Node.js", "MongoDB"], // Add technologies used
-      liveLink: "https://example.com", // Add live site URL
-      githubLink: "https://github.com/username/project" // Optional: Add GitHub URL
+      name: "Fare Tracker",
+      description: "AI-powered transportation cost monitor. Track real-time fares for Uber, Bolt, and taxis, set smart price alerts, and get AI-driven predictions and optimal booking times. Built with n8n workflows for price simulation and forecasting.",
+      image: "https://placehold.co/600x400/1a1a2e/eee?text=Fare+Tracker",
+      techStack: ["React", "n8n", "AI/ML", "Webhooks"],
+      liveLink: "https://faretracker.netlify.app/",
+      githubLink: "https://github.com/djsmacker01/Fare_Tracker"
     },
     {
-      name: "Project Name 2",
-      description: "Another project description highlighting key features and impact.",
-      image: "/images/placeholder-project.jpg",
-      techStack: ["Python", "AI/ML", "FastAPI"],
-      liveLink: "https://example.com",
-      githubLink: "https://github.com/username/project2"
+      name: "Cymru Unleashed",
+      description: "Empowering Welsh communities through sports and culture. Grassroots initiative celebrating UEFA Women's Euro 2025 with sport workshops, art installations, and a bilingual digital campaign. Sponsored by the Welsh Government.",
+      image: "https://placehold.co/600x400/1a1a2e/eee?text=Cymru+Unleashed",
+      techStack: ["HTML", "CSS", "JavaScript"],
+      liveLink: "https://cymruunleashed.com/",
+      githubLink: "https://github.com/djsmacker01/Cymru-Unleashed"
+    },
+    {
+      name: "TrackGoal",
+      description: "Achieve your goals with smart tracking. A productivity app for setting, monitoring, and reaching personal goals, with user accounts and a modern dashboard. Built with Angular and Supabase.",
+      image: "https://placehold.co/600x400/1a1a2e/eee?text=TrackGoal",
+      techStack: ["Angular", "TypeScript", "SCSS", "Supabase"],
+      liveLink: "https://trackgoal.online/",
+      githubLink: "https://github.com/djsmacker01/TrackGoal"
+    },
+    {
+      name: "RescueAlert",
+      description: "Private project — access requires a signed NDA. WhatsApp me to request access: +447459253102. Demo available at rescuealert.vercel.app after approval.",
+      image: "https://placehold.co/600x400/1a1a2e/eee?text=RescueAlert",
+      techStack: ["React", "Vercel"],
+      liveLink: "https://rescuealert.vercel.app/",
+      githubLink: "https://github.com/djsmacker01/rescuealert",
+      requestAccessLink: "https://wa.me/447459253102",
+      isPrivate: true
     }
-    // Add more projects as needed
   ];
 
   return (
@@ -86,7 +103,21 @@ const Projects = () => {
                 />
                 <div className="project-overlay">
                   <div className="project-links">
-                    {project.liveLink && (
+                    {project.requestAccessLink && (
+                      <motion.a 
+                        href={project.requestAccessLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link live-link request-access-link"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-label="Request access via WhatsApp"
+                      >
+                        <span>Request Access (WhatsApp)</span>
+                        <ExternalLink size={18} />
+                      </motion.a>
+                    )}
+                    {!project.requestAccessLink && project.liveLink && (
                       <motion.a 
                         href={project.liveLink}
                         target="_blank"
@@ -130,6 +161,27 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          className="projects-more-cta"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <motion.a
+            href="https://github.com/djsmacker01"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="projects-more-button"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Github size={22} />
+            <span>Get to know more about my portfolio projects</span>
+            <ExternalLink size={18} />
+          </motion.a>
         </motion.div>
       </div>
     </motion.section>
